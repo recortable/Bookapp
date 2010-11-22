@@ -1,4 +1,12 @@
 Bookapp::Application.routes.draw do
+  resources :projects do
+    resources :collaborators
+    resources :documents
+  end
+
+  devise_for :users
+
+  root :to => 'workspaces#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,19 @@
+
+javascripts:
+  client:
+    - public/javascripts/libs/jquery-1.4.4.min.js
+    - public/javascripts/libs/underscore.js
+    - public/javascripts/libs/backbone-min.js
+    - public/javascripts/libs/handlebars.js
+    - public/client/boot.js
+    - public/client/app/*.js
+    - public/client/models/*.js
+    - public/client/presenters/*.js
+    - public/client/helpers/*.js
+    - public/client/load.js
+
+stylesheets:
+  client:
+    - public/stylesheets/reset-min.css
+    - public/stylesheets/icons.css
+    - public/less/*.less

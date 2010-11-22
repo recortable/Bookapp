@@ -1,0 +1,10 @@
+<%= title "Colaboradorxs de #{@project.title}"  %>
+
+
+<table>
+  <% @collaborators.each do |collaborator| %>
+    <tr>
+      <td><%= collaborator.user.name %></td>
+    </tr>
+  <% end %>
+</table>

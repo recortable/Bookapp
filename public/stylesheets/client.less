@@ -1,0 +1,23 @@
+
+@color-gray: #C6C8CA;
+@color-dgray: #3F3F3F;
+@color-lgray: #EFEFEF;
+@color-blue: #00AEEF;
+@color-lblue: #E1EBEF;
+@color-dblue: #005677;
+
+.panel {position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden;}
+.rounded {border-radius: 5px;}
+
+html {.panel;}
+
+body {
+  background-color: @color-gray; .panel;
+}
+
+#left {position: absolute; top: 10px; width: 290px; bottom: 10px; left: 10px;
+  background-color: @color-lgray; .rounded;}
+#center {position: absolute; left: 310px; right: 310px; top: 0; bottom: 0;}
+#location {.panel; height: 24px; background-color: @color-dgray;}
+#status {position: absolute; left: 0px; right: 5px; bottom: 0; height: 24px; background-color: @color-dgray;}
+#content {.panel; top: 34px; bottom: 34px; background-color: @color-lgray;}

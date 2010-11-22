@@ -1,0 +1,10 @@
+<%= title "Documentos de #{@project.title}"  %>
+
+
+<table>
+  <% @documents.each do |document| %>
+    <tr>
+      <td><%= document.title %></td>
+    </tr>
+  <% end %>
+</table>

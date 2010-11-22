@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookapp</title>
+  </head>
+  <body>
+    <div id="workspace">
+      <div id="left">
+        <ul id="site_navigation">
+          <li><div class="sprite-nav sprite-nav-entranceicon active" id="navigate-to-projects">Investigaciones</div></li>
+          <li><div class="sprite-nav sprite-nav-archivesicon" id="navigate-to-documents">Artículos</div></li>
+          <li><div class="sprite-nav sprite-nav-editionicon navigation-disabled">Discusiones</div></li>
+          <li><div class="sprite-nav sprite-nav-bookaicon navigation-disabled">Indice</div></li>
+        </ul>
+        <div id="browser_viewport">
+        </div>
+        <ul id="user_navigation">
+          <li><div class="sprite-nav sprite-nav-loginicon" id="navigate-to-users" rel="address:/colaboradorxs">Colaboradorxs</div></li>
+          <li><div class="sprite-nav sprite-nav-contacticon" id="navigate-to-activities" rel="address:/actividades">Actividad</div></li>
+        </ul>
+      </div>
+      <div id="center">
+        <div id="user_controls">
+          <a id="plataformabooka" href="#">Plataformabooka.net > </a>
+          <a id="current_project" href="#"></a>
+          <div id="current_user">
+          </div>
+          <div id="working">Trabajando...</div>
+        </div>
+        <div id="content_viewport">
+          <div id="content">
+            <%= yield  %>
+          </div>
+        </div>
+        <div id="talk_controls">
+          <div id="online_users">Personas conectadas: 0</div>
+          <div id="unreaded_messages">Mensajes sin leer: 0</div>
+        </div>
+      </div>
+      <div id="right">
+        <div id="comm_viewport">
+          <div id="communicator">
+            <div class="output"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <%= yield %>
+
+  <link href="/stylesheets/reset-min.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/icons.css" media="screen" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet/less" href="/less/booka.less" type="text/css" />
+  <%= javascript_include_tag 'libs/less-1.0.36.min.js' %>
+  <link  href="//fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" /> 
+  <script type="text/javascript" src="http://beaconpush.com/1/client.js"></script>
+  <%= include_javascripts :client %>
+</body>
+</html>

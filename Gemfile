@@ -1,10 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.3'
 gem 'devise'
+gem 'devise_rpx_connectable'
 gem 'inherited_resources', '1.1.2'
 gem "simple_form"
 gem "show_for"
+# gem "table_for"
 gem "cancan"
 gem "jammit"
 gem "rest-client"

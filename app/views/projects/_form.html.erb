@@ -1,0 +1,13 @@
+<%= simple_form_for(@project) do |f| %>
+
+<div class="inputs">
+  <%= f.input :title %>
+  <%= f.input :description, :as => :text %>
+  <%= f.input :public %>
+  <%= f.input :stage, :collection => ['calls', 'archives', 'discuss', 'comment'] %>
+</div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

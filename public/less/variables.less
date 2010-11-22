@@ -1,0 +1,61 @@
+
+@azul: #00AEEF;
+@azulclaro: #E1EBEF;
+@azuloscuro: #005677;
+@gris: #C6C8CA;
+@grisoscuro: #3F3F3F;
+@grismas: #474747;
+@grisclaro: #efefef;
+@amarillo: #FEFF8F;
+@amarilloclaro: #FEFFB0;
+@amarillooscuro: #FFCC00;
+@rojo: #c00;
+@verdeoscuro: #08362B;
+@rosa: #FF99FF;
+@rosaoscuro: #FF5CFF;
+@verdeclaro: #4DFF79;
+@verde: #1AFF53;
+@verdeoscuro: #00E639;
+
+@serif: 'Nobile', serif;
+@sans: 'Nobile', serif;
+@font-small: 80%;
+
+a { text-decoration: none; }
+a:hover { text-decoration: underline;}
+
+.debug {font-family: @sans; font-size: 65%; color: gray;}
+
+.container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.rounded {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.round-bottom {border-radius: 0 0 3px 3px;}
+.round-top {border-radius: 3px 3px 0 0;}
+
+.button {
+    cursor: pointer;
+    display: block;
+    float: left;
+    padding: 0.2em 1em;
+    margin: 1px 0 0 3px;
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+    font-family: @sans;
+}
+
+.action {
+    background-color: @azul;
+    color: white;
+    .button;
+}
+
+
+div.action:hover {
+    color: @azulclaro;
+}
