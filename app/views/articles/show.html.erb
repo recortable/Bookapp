@@ -1,0 +1,11 @@
+
+<%= show_for @project do |project| %>
+  <%= project.attribute :title %>
+  <%= project.attribute :description %>
+  <%= project.attribute :stage %>
+  <%= project.attribute :public %>
+<% end %>
+
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

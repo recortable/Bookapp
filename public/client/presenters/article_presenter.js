@@ -1,7 +1,7 @@
 (function($) {
 
 
-  $$.ProjectPresenter = Backbone.View.extend({
+  $$.ArticlePresenter = Backbone.View.extend({
     tag : 'div',
 
     initialize: function() {
@@ -12,16 +12,16 @@
       $(this.el).click(this.clicked);
     },
     render: function() {
-      this.el = $$.render.project(this.model.toJSON());
+      this.el = $$.render.article(this.model.toJSON());
       return true;
     },
     clicked : function() {
-      window.location.hash = "investigaciones/" + this.model.get('id');
+      $$.router.go('projects', this.model.get('project_id'), 'articles', this.model.get('id'));
     }
   });
 
-  $$.ProjectsPresenter = Backbone.View.extend({
-    el: $(".browser.projects"),
+  $$.ArticlesPresenter = Backbone.View.extend({
+    el: $(".browser.articles"),
 
     initialize: function() {
       _.bindAll(this, 'addOne', 'addAll', 'render');
@@ -30,9 +30,9 @@
       this.list = this.$(".list");
     },
 
-    addOne: function(project) {
-      var view = new $$.ProjectPresenter({
-        model: project
+    addOne: function(article) {
+      var view = new $$.ArticlePresenter({
+        model: article
       });
       $(this.list).append(view.el);
     },
@@ -42,6 +42,5 @@
       model.each(this.addOne);
     }
   });
-
 
 })(window.jQuery);

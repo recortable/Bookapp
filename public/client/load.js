@@ -15,7 +15,7 @@
     $("#workspace").show();
 
     $$.workspace = new $$.Workspace();
-    $$.loading($$.workspace.url);
+    $$.loading(true, $$.workspace.url);
     $$.workspace.fetch();
 
     $$.workspacePresenter = new $$.WorkspacePresenter({

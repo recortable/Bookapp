@@ -1,0 +1,12 @@
+<%= simple_form_for([@project, @article]) do |f| %>
+
+  <div class="inputs">
+    <%= f.input :title %>
+    <%= f.input :description, :as => :text %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+    <%= link_to 'Cancelar', project_articles_path(@project) %>
+  </div>
+<% end %>

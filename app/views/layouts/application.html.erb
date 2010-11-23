@@ -2,24 +2,26 @@
 <html>
   <head>
     <title><%= yield :title %> - Bookapp </title>
-    <%= stylesheet_link_tag :all %>
+    <%= stylesheet_link_tag 'scaffold.css' %>
     <%= javascript_include_tag 'libs/jquery-1.4.4.min.js', 'rails.js' %>
     <%= csrf_meta_tag %>
   </head>
   <body>
-    <div id="head">
-      <div class="session">
-      <% if current_user %>
-        <%= current_user.name %>
-      <% else %>
-        <%= link_to_rpx "Sign in", user_session_url %>
-      <% end %>
+    <div id="page">
+      <div id="head">
+        <div class="session">
+          <% if current_user %>
+            <%= current_user.name %>
+          <% else %>
+            <%= link_to_rpx "Sign in", user_session_url %>
+          <% end %>
+        </div>
+        <div class="navigation">
+          <%= link_to 'Proyectos', projects_url %>
+        </div>
       </div>
-      <div class="navigation">
-        <%= link_to 'Proyectos', projects_url %>
-      </div>
+      <%= yield %>
     </div>
-    <%= yield %>
     <%= javascript_include_rpx(user_session_url) %>
   </body>
 </html>

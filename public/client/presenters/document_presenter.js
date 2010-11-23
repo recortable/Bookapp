@@ -19,7 +19,7 @@
         execute(operation, list);
       });
       
-      list.append(new $$.SlotPresenter(this.model).el);
+      list.append(new $$.SlotPresenter({repository_id : this.model.get('id')}).el);
       $(this.el).empty().append(output);
       return true;
     }
@@ -36,7 +36,8 @@
 
   var create = function(operation, list) {
     var slot = new $$.SlotPresenter({
-      model : operation
+      repository_id : operation.repository_id,
+      before_id : operation.id
     });
     var para = new $$.ParagraphPresenter({
       model : operation

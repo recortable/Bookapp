@@ -1,9 +1,7 @@
 Bookapp::Application.routes.draw do
   resources :projects do
     resources :collaborators
-    resources :documents do
-
-    end
+    resources :articles
     resources :operations
   end
 

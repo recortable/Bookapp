@@ -3,14 +3,16 @@
   var requests = [];
 
 
-  $$.loading = function(url) {
-    var index = $.inArray(url, requests);
-    if (index == -1) {
+  $$.loading = function(starts, url) {
+    var index = -1;
+    if (starts) {
       requests.push(url);
-    } else {
+    } else if ((index = $.inArray(url, requests)) != -1) {
       requests.splice(index, 1);
+    } else {
+      console.log("LOADING URL NOT FOUND!", url);
     }
-    console.log("LOAD " + url, -1 * index, requests);
+    console.log("LOAD " + (starts ? 'STARTS: ' : 'STOPS: ') + url, requests);
 
     var loader = $("#working");
     

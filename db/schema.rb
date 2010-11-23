@@ -25,15 +25,6 @@ ActiveRecord::Schema.define(:version => 20101122160704) do
     t.datetime "updated_at"
   end
 
-  create_table "documents", :force => true do |t|
-    t.string   "title"
-    t.integer  "user_id"
-    t.integer  "project_id"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "operations", :force => true do |t|
     t.integer  "repository_id"
     t.string   "repository_type", :limit => 32
@@ -51,6 +42,16 @@ ActiveRecord::Schema.define(:version => 20101122160704) do
     t.string   "description", :limit => 512
     t.boolean  "public"
     t.string   "stage",       :limit => 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "repositories", :force => true do |t|
+    t.string   "title",       :limit => 128
+    t.string   "type",        :limit => 32
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.string   "description", :limit => 256
     t.datetime "created_at"
     t.datetime "updated_at"
   end

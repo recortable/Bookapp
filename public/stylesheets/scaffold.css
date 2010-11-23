@@ -56,3 +56,10 @@ div.field, div.actions {
 }
 
 table {width: 100%;}
+body {background-color: #C6C8CA;}
+#page {width: 960px; padding: 1em; margin: 2em auto; background-color: white;}
+#head {width: 100%; overflow: hidden;}
+#head .session {float: right;}
+
+form .input {width: 100%; overflow: hidden;}
+form .input label {display: block; font-weight: bold;}

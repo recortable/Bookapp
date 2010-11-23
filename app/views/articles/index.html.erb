@@ -1,0 +1,17 @@
+<%= title "Archivos de #{@project.title}"  %>
+
+<div class="actions">
+  <%= link_to 'Añadir archivo', new_project_article_path(@project) %>
+</div>
+
+
+<table>
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.type %></td>
+      <td><%= article.user_id %></td>
+      <td><%= article.description %></td>
+    </tr>
+  <% end %>
+</table>

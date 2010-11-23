@@ -8,7 +8,7 @@
 
      setProjectId : function(id) {
        this.set({project_id : id});
-       if ($$.projects) {
+       if (id && $$.projects) {
           this.set({project : $$.projects.get(id)});
        }
      }
