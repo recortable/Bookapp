@@ -1,48 +1,9 @@
  
-@import "/less/variables";
-
-html {
-    font-size: 90%;
-    font-family: @sans;  
-}
-
-html, body {height: 100%; width: 100%;}
-
-pre.debug_dump {display: none;}
-pre.adebug_dump {color: gray; font-size: 75%; height: 1em; overflow: hidden;}
-pre.debug_dump:hover {height: auto; border: 1px solid #efefef;}
-
-.under_construction {
-    padding: 10px;
-    color: white;
-    border: 1px solid @azuloscuro;
-    background-color: @azul;
-}
-.under_construction h1 {
-    font-size: 200%;
-    margin-bottom: 10px;
-}
-.under_construction p {
-    margin: 10px 0;
-}
-
-h1 {font-size: 200%; margin-bottom: 1em;}
-h2 {font-size: 150%; margin-bottom: 0.5em;}
-h3 {font-size: 120%; margin-bottom: 0.2em;}
-p {margin: 0.5em 0;}
+@import "variables.less";
+@import "css.workspace.less";
+@import "css.browser.less";
+@import "css.projects.less";
+@import "css.documents.less";
 
 
-@import "css.dialogs";
-@import "css.editor";
-@import "css.browser";
-@import "css.workspace";
-@import "css.documents";
-@import "css.users";
-@import "css.indices";
-@import "css.disqs";
-@import "css.projects";
-@import "css.calendar";
-@import "css.communicator";
-
-
-
+ 

@@ -1,14 +1,12 @@
 
+@import "variables";
+
+
+
 #project_stages {width: 70%; overflow: hidden; margin: 5px 10% 10px 10%; padding: 5px 5%;
-                 background-color: @grisclaro; color: @azul; border: 1px solid @grisoscuro; .rounded; }
+    background-color: @grisclaro; color: @azul; border: 1px solid @grisoscuro; .rounded; }
 #project_stages .icons {height: 10px; float: left;}
 #project_stages a {font-weight: bold; color: @azul;}
-
-.browser.projects div.project {
-  cursor: pointer; margin: 10px 0; display: block;
-  background-color: white; padding: 5px;
-  .rounded;}
-.browser.projects div.project:hover {background-color: @gris;}
 
 .project .property {font-family: @sans; font-size: @font-small; color: @grisoscuro;}
 .project .stage {margin-top: 5px;}
@@ -18,9 +16,16 @@
 .browser.projects .list {margin: 10px 5px; overflow-y: auto; overflow-x: hidden; background-color: @grisclaro; padding-right: 5px;}
 .browser.projects h1 {margin-left: 10px; color: black; font-family: @sans;}
 
-.browser.projects p.title {color: black; font-size: 120%;}
+.browser.projects a {color: black; font-size: 120%;}
 .browser.projects .stages a {color: @azul; font-size: 80%;}
 
+.browser.projects .project {
+    margin: 10px 0;
+    display: block;
+    background-color: white;
+    padding: 5px;
+    .rounded;
+}
 
 .browser.projects .project.current {background-color: @amarilloclaro; margin-top: 10; margin-bottom: 20px; color: black;}
 .browser.projects .info {font-weight: bold;}

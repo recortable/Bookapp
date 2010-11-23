@@ -1,0 +1,35 @@
+<%= title("Operaciones de #{@repository.title}") %>
+
+<div class="actions">
+  <%= link_to 'Añadir operación', [:new, @repository, :operation] %>
+</div>
+
+<table>
+  <tr>
+    <td>Url</td>
+    <td>Id</td>
+    <td>Repository id</td>
+    <td>Repository type</td>
+    <td>Action</td>
+    <td>Model</td>
+    <td>Params</td>
+    <td>Body</td>
+  </tr>
+  <% @operations.each do |operation| %>
+    <tr>
+      <td><%= url_for [@repository, operation] %></td>
+      <td><%= operation.id %></td>
+      <td><%= operation.repository_id %></td>
+      <td><%= operation.repository_type %></td>
+      <td><%= operation.action %></td>
+      <td><%= operation.model %></td>
+      <td><%= operation.params %></td>
+      <td><%= operation.body %></td>
+      <td class="actions">
+        <%= link_to 'Editar', [:edit, @repository, operation] %>
+        <%= link_to 'Borrar', [@repository, operation], :method => :delete,
+          :confirm => "¿Borrar acción?" %>
+      </td>
+    </tr>
+  <% end %>
+</table>

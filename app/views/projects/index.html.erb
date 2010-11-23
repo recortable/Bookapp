@@ -4,8 +4,9 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= project.title %></td>
+        <td><%= link_to project.title, project %></td>
         <td class="actions">
+          <%= link_to 'Operaciones', project_operations_path(project) %>
           <%= link_to 'Colaboradorxs', project_collaborators_path(project) %>
           <%= link_to 'Documentos', project_documents_path(project) %> |
           <%= link_to 'Editar', edit_project_path(project) %>

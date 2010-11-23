@@ -3,21 +3,45 @@
   <head>
     <title>Bookapp</title>
   </head>
+  <link href="/stylesheets/reset-min.css" media="screen" rel="stylesheet" type="text/css" />
+  <style type="text/css">
+    html {
+      font-size: 90%;
+      font-family: 'Nobile', sans;
+      background-color: #C6C8CA;
+    }
+    #working {
+      text-align: center;
+      padding: 1px 0px;
+      position: absolute;
+      left: 40%;
+      right: 40%;
+      font-size: 80%;
+      background-color: #FEFF8F;
+      color: #00AEEF;
+      border-radius: 0 0 3px 3px;
+      z-index: 5000;
+    }
+  </style>
   <body>
-    <div id="workspace">
+    <div id="working">Trabajando...</div>
+    <div id="workspace" style="display: none;">
       <div id="left">
         <ul id="site_navigation">
-          <li><div class="sprite-nav sprite-nav-entranceicon active" id="navigate-to-projects">Investigaciones</div></li>
-          <li><div class="sprite-nav sprite-nav-archivesicon" id="navigate-to-documents">Artículos</div></li>
-          <li><div class="sprite-nav sprite-nav-editionicon navigation-disabled">Discusiones</div></li>
-          <li><div class="sprite-nav sprite-nav-bookaicon navigation-disabled">Indice</div></li>
+          <li class="sprite-nav sprite-nav-entranceicon active" id="navigate-to-projects">Investigaciones</li>
+          <li class="sprite-nav sprite-nav-archivesicon" id="navigate-to-documents">Artículos</li>
+          <li class="sprite-nav sprite-nav-editionicon navigation-disabled" id="navigate-to-discussions">Discusiones</li>
+          <li class="sprite-nav sprite-nav-bookaicon navigation-disabled" id="navigate-to-index">Indice</li>
         </ul>
         <div id="browser_viewport">
+          <div class="browser projects" style="display: none;">
+            <h1>Investigaciones</h1>
+            <div class="list">           </div>
+            <div class="actions">
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Crear un nuevo proyecto">Crear proyecto</a>
+            </div>
+          </div>
         </div>
-        <ul id="user_navigation">
-          <li><div class="sprite-nav sprite-nav-loginicon" id="navigate-to-users" rel="address:/colaboradorxs">Colaboradorxs</div></li>
-          <li><div class="sprite-nav sprite-nav-contacticon" id="navigate-to-activities" rel="address:/actividades">Actividad</div></li>
-        </ul>
       </div>
       <div id="center">
         <div id="user_controls">
@@ -25,11 +49,9 @@
           <a id="current_project" href="#"></a>
           <div id="current_user">
           </div>
-          <div id="working">Trabajando...</div>
         </div>
         <div id="content_viewport">
           <div id="content">
-            <%= yield  %>
           </div>
         </div>
         <div id="talk_controls">
@@ -38,6 +60,10 @@
         </div>
       </div>
       <div id="right">
+        <ul id="user_navigation">
+          <li><div class="sprite-nav sprite-nav-loginicon" id="navigate-to-users" rel="address:/colaboradorxs">Colaboradorxs</div></li>
+          <li><div class="sprite-nav sprite-nav-contacticon" id="navigate-to-activities" rel="address:/actividades">Actividad</div></li>
+        </ul>
         <div id="comm_viewport">
           <div id="communicator">
             <div class="output"></div>
@@ -49,12 +75,14 @@
 
     <%= yield %>
 
-  <link href="/stylesheets/reset-min.css" media="screen" rel="stylesheet" type="text/css" />
+
   <link href="/stylesheets/icons.css" media="screen" rel="stylesheet" type="text/css" />
   <link rel="stylesheet/less" href="/less/booka.less" type="text/css" />
   <%= javascript_include_tag 'libs/less-1.0.36.min.js' %>
-  <link  href="//fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" /> 
+  <link  href="//fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="http://beaconpush.com/1/client.js"></script>
   <%= include_javascripts :client %>
+
+  <%= render 'tmpl' %>
 </body>
 </html>

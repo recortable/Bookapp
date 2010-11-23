@@ -1,0 +1,14 @@
+
+<%= simple_form_for([@repository, @operation]) do |f| %>
+
+  <div class="inputs">
+    <%= f.input :action, :collection => ['create'] %>
+    <%= f.input :model, :collection => ['Paragraph'] %>
+    <%= f.input :params %>
+    <%= f.input :body, :as => :text %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

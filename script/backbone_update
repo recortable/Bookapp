@@ -1,0 +1,3 @@
+curl  https://github.com/documentcloud/backbone/raw/master/backbone.js > public/javascripts/libs/backbone.js
+
+

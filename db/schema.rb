@@ -10,7 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122153149) do
+ActiveRecord::Schema.define(:version => 20101122160704) do
+
+  create_table "abilities", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "collaborators", :force => true do |t|
     t.integer  "user_id"
@@ -31,9 +36,11 @@ ActiveRecord::Schema.define(:version => 20101122153149) do
 
   create_table "operations", :force => true do |t|
     t.integer  "repository_id"
-    t.string   "model"
-    t.string   "action"
-    t.string   "attributes"
+    t.string   "repository_type", :limit => 32
+    t.string   "model",           :limit => 32
+    t.string   "action",          :limit => 32
+    t.string   "params",          :limit => 256
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

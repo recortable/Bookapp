@@ -5,3 +5,6 @@ user = User.create!(:name => 'danigb', :email => 'danigb@gmail.com',
 
 project = Project.create!(:title => 'Proyecto uno', :user => user)
 project.documents.build(:title => 'Documento uno', :user => user)
+
+project = Project.create!(:title => 'Proyecto dos', :user => user)
+project.documents.build(:title => 'Documento uno', :user => user)

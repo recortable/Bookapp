@@ -1,0 +1,50 @@
+<script id="project" type="text/html">
+  <div class="project">
+    <p class="title">{{ title }}</p>
+    <p class="description"> {{ description }}</p>
+    <p class="property collaborators">?? personas colaborando</p>
+  </div>
+</script>
+
+<script id="document" type="text/html">
+  <div id="page" class="doc">
+    <div id="document_{{id}}" class="head">
+      <h1>{{title}}</h1>
+    </div>
+    <div class="paragraphs"></div>
+  </div>
+</script>
+
+<script id="clip_editor" type="text/html">
+  <div class="clip_editor editor">
+    <h1>Añadir un párrafo</h1>
+    <div class="controls">
+      <textarea cols="30" rows="50"></textarea>
+    </div>
+    <div class="actions">
+      <a class="submit">Guardar</a>
+      <a class="cancel">Cancelar</a>
+    </div>
+  </div>
+</script>
+
+<script id="paragraph" type="text/html">
+  <div id="paragraph-presenter-{{id}}" class="paragraph">
+    <div class="display">
+      <div class="actions">
+        <a class="action-edit iconic iconic-plus_alt_16x16">Editar</a>
+      </div>
+      <div id="paragraph-{{id}}" class="section">{{{body}}}</div>
+    </div>
+    <div class="paragraph-editor editor" style="display: none;">
+      <h1>Editar un párrafo</h1>
+      <div class="controls">
+        <textarea class="body" cols="30" rows="5"></textarea>
+      </div>
+      <div class="actions">
+        <a class="submit">Guardar</a>
+        <a class="cancel">Cancelar</a>
+      </div>
+    </div>
+  </div>
+</script>

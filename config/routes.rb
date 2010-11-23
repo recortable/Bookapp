@@ -1,7 +1,10 @@
 Bookapp::Application.routes.draw do
   resources :projects do
     resources :collaborators
-    resources :documents
+    resources :documents do
+
+    end
+    resources :operations
   end
 
   devise_for :users
