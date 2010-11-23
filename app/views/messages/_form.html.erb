@@ -1,0 +1,12 @@
+<%= simple_form_for(@message) do |f| %>
+
+<div class="inputs">
+  <%= f.input :action %>
+  <%= f.input :body %>
+</div>
+
+  <div class="actions">
+    <%= f.submit %>
+    <%= link_to 'Cancelar', messages_path %>
+  </div>
+<% end %>

@@ -24,7 +24,7 @@
     el: $(".browser.projects"),
 
     initialize: function() {
-      _.bindAll(this, 'addOne', 'addAll', 'render');
+      _.bindAll(this, 'addOne', 'addAll');
       this.model.bind('add',     this.addOne);
       this.model.bind('refresh', this.addAll);
       this.list = this.$(".list");

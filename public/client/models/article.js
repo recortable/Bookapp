@@ -9,6 +9,7 @@
      initialize : function(models, options) {
        this.project_id = options.project_id;
        this.url = "/projects/" + this.project_id + "/articles.json";
+
      }
   });
 })();

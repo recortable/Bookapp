@@ -83,7 +83,7 @@
   
   function showInBrowser(el) {
     console.log("SHOW IN BROWSER");
-    $("#browser_viewport > *").hide();
+    $("#browser-viewport > *").hide();
     el.show();
   }
 

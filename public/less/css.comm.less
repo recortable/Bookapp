@@ -1,0 +1,30 @@
+
+.comm {
+    width: 100%;
+    height: 100%;
+    background-color: #efefef;
+    overflow: hidden;
+    .rounded;
+}
+
+.comm .controls {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 63px;
+  font-size: 80%; color: @grisoscuro;
+}
+.comm .controls label {
+  position: absolute; left: 5px; right: 5px; bottom: 53px; height: 1em;}
+
+.comm textarea {
+  position: absolute; left: 5px; right: 5px; bottom: 5px; height: 36px;
+  border: 1px solid @gris; padding: 2px; 
+}
+.comm .list {position: absolute; left: 5px; right: 5px; top: 5px; bottom: 60px;
+  overflow: auto; overflow-x: hidden;}
+
+.item.composed {overflow: hidden; margin: 0 0 3px 5%; font-size: 80%;}
+.item.composed .info {width: 100%; overflow: hidden; font-size: 80%; margin-bottom: -5px;}
+.item.composed .info .user_name {
+  float: left; padding: 1px 3px; background-color: #c88;  margin-left: 3px;
+  .rounded; .shadow;}
+.item.composed .info .created_at {float: right; padding: 1px 3px; margin-right: 5px; .rounded; .shadow;}
+.item.composed .body {padding: 3px 3px 1px 3px; background-color: white; .rounded;}

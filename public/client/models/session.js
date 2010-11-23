@@ -4,7 +4,7 @@
   });
 
   $$.Sessions = Backbone.Collection.extend({
-     model: $$.Workspace,
+     model: $$.Session,
      url: '/'
   });
 })();

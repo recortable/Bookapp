@@ -4,6 +4,7 @@ Bookapp::Application.routes.draw do
     resources :articles
     resources :operations
   end
+  resources :messages
 
   devise_for :users
 

@@ -7,11 +7,24 @@
 </script>
 
 <script id="article" type="text/html">
-  <div class="article item">
+  <div id="article-{{id}}" class="article item">
     <p class="title">{{ title }}</p>
     <p class="description"> {{ description }}</p>
   </div>
 </script>
+
+<script id="message" type="text/html">
+  <div id="message-{{html_id}}" class="message item composed">
+    <div class="info">
+      <div class="user_name">{{ user_name }}</div>
+      <div class="created_at">{{#fecha}}{{ created_at }}{{/fecha}}</div>
+    </div>
+    <div class="body">
+      {{body}}
+    </div>
+  </div>
+</script>
+
 
 <script id="document" type="text/html">
   <div id="page" class="doc">

@@ -15,6 +15,10 @@
     $("#workspace").show();
 
     $$.workspace = new $$.Workspace();
+    $$.messages = new $$.Messages();
+    $$.messagesPresenter = new $$.MessagesPresenter({
+      model : $$.messages
+      });
     $$.loading(true, $$.workspace.url);
     $$.workspace.fetch();
 

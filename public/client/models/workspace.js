@@ -3,7 +3,7 @@
      url: '/.json',
 
      defaults : {
-       project_id : -1
+       project_id : null
      },
 
      setProjectId : function(id) {

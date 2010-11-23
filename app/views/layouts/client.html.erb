@@ -11,15 +11,14 @@
       background-color: #C6C8CA;
     }
     #working {
-      text-align: center;
-      padding: 1px 0px;
+      padding: 1px 5px;
       position: absolute;
-      left: 40%;
-      right: 40%;
+      right: 0; top: 0;
       font-size: 80%;
       background-color: #FEFF8F;
       color: #00AEEF;
-      border-radius: 0 0 3px 3px;
+      border-radius: 0 0 0px 3px;
+      -webkit-box-shadow: -3px 3px 5px #888;
       z-index: 5000;
     }
   </style>
@@ -33,7 +32,7 @@
           <li class="sprite-nav sprite-nav-editionicon navigation-disabled" id="navigate-to-discussions">Discusiones</li>
           <li class="sprite-nav sprite-nav-bookaicon navigation-disabled" id="navigate-to-index">Indice</li>
         </ul>
-        <div id="browser_viewport">
+        <div id="browser-viewport">
           <div class="browser projects" style="display: none;">
             <h1>Investigaciones</h1>
             <div class="list"></div>
@@ -57,7 +56,7 @@
           <div id="current_user">
           </div>
         </div>
-        <div id="content_viewport">
+        <div id="content-viewport">
           <div id="content">
           </div>
         </div>
@@ -71,9 +70,18 @@
           <li><div class="sprite-nav sprite-nav-loginicon" id="navigate-to-users" rel="address:/colaboradorxs">Colaboradorxs</div></li>
           <li><div class="sprite-nav sprite-nav-contacticon" id="navigate-to-activities" rel="address:/actividades">Actividad</div></li>
         </ul>
-        <div id="comm_viewport">
-          <div id="communicator">
-            <div class="output"></div>
+        <div id="comm-viewport">
+          <div id="communicator" class="comm">
+            <div class="list"></div>
+            <div class="controls">
+              <label class="status">Conectando...</label>
+              <textarea cols="6" rows="2" class="body"></textarea>
+            </div>
+          </div>
+          <div id="users" class="comm" style="display: none;">
+            <div class="list"></div>
+            <div class="controls">
+            </div>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@
     },
 
     render : function() {
-      console.log("DOCUMENT RENDER", this.model);
+      $$.loading(false, this.url);
       var output = $$.render.document(this.model.toJSON());
       var list = $(".paragraphs", output);
       _.each(this.model.get('operations'), function(operation) {

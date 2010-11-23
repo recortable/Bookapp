@@ -28,9 +28,11 @@
         spec.cache[name] = Handlebars.compile(templateString);
 
         // build the corresponding public retrieval function
-        that[name] = function (data, raw) {
+        that[name] = function (data, blocks, raw) {
+          blocks || (blocks = {});
+          if (spec.partials) blocks= _.extend({}, spec.partials, blocks);
           data = data || {};
-          var result = spec.cache[name](data, spec.partials);
+          var result = spec.cache[name](data, blocks);
           return raw ? result : $(result);
         };
       }

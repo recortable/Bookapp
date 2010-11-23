@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122160704) do
+ActiveRecord::Schema.define(:version => 20101123125203) do
 
   create_table "abilities", :force => true do |t|
     t.datetime "created_at"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(:version => 20101122160704) do
     t.integer  "user_id"
     t.integer  "project_id"
     t.string   "roles",      :limit => 32
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "action",     :limit => 8
+    t.string   "user_name",  :limit => 32
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

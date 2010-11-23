@@ -2,9 +2,10 @@
 # and open the template in the editor.
 
 class Workspace
-  attr_reader :projects, :user_id, :user_name, :csrf
+  attr_reader :projects, :user_id, :user_name, :csrf, :messages
   def initialize(csrf, current_user)
     @csrf = csrf
+    @messages = Message.all
     if current_user
       @user_id = current_user.id
       @user_name = current_user.name
