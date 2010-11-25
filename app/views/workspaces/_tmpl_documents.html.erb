@@ -1,0 +1,76 @@
+<script id="document" type="text/html">
+  <div id="page" class="doc">
+    <div id="document_{{id}}" class="head">
+      <h1>{{title}}</h1>
+    </div>
+    <div class="paragraphs"></div>
+  </div>
+  <div id="comments" class="comments">
+    <div class="head">
+      <h1>Comentarios a '{{title}}'</h1>
+    </div>
+    <div class="comments-list"></div>
+    <div class="comment editor" style="display: none;">
+      <form action="#">
+        <textarea cols="5" rows="5"></textarea>
+        <div class="actions">
+          <input type="submit" value="Comentar" />
+          <a class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+    <div class="comment actions">
+      <a class="new-comment">Añadir comentario</a>
+    </div>
+  </div>
+</script>
+
+<script id="clip_editor" type="text/html">
+  <div class="clip_editor editor">
+    <h1>Añadir un párrafo (repo: {{repository_id}} before: {{before_id}})</h1>
+    <form action="#">
+      <div class="inputs">
+        <textarea class="body" cols="30" rows="50"></textarea>
+      </div>
+      <div class="actions">
+        <input type="submit" value="Guardar" />
+        <a class="cancel">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</script>
+
+<script id="paragraph" type="text/html">
+  <div id="paragraph-presenter-{{id}}" class="paragraph">
+    <div class="display">
+      <div class="actions">
+        <a class="action-edit iconic iconic-plus_alt_16x16">Editar</a>
+      </div>
+      <div id="paragraph-{{id}}" class="section">{{{body}}}</div>
+    </div>
+    <div class="paragraph-editor editor" style="display: none;">
+      <h1>Editar un párrafo (para: {{id}})</h1>
+      <form action="#">
+        <div class="inputs">
+          <textarea class="body" cols="30" rows="5"></textarea>
+        </div>
+        <div class="actions">
+          <input type="submit" value="Guardar" />
+          <a class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+
+<script id="comment" type="text/html">
+  <div id="comment-{{html_id}}" class="comment item composed">
+    <div class="info">
+      <div class="user_name">{{ user_name }}</div>
+      <div class="created_at">{{#fecha}}{{ created_at }}{{/fecha}}</div>
+    </div>
+    <div class="body">
+      {{body}}
+    </div>
+  </div>
+</script>

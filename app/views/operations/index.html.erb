@@ -1,7 +1,7 @@
 <%= title("Operaciones de #{@repository.title}") %>
 
 <div class="actions">
-  <%= link_to 'Añadir operación', [:new, @repository, :operation] %>
+  <%= link_to 'Añadir operación', new_operation_path(@project, @repository) %>
 </div>
 
 <table>
@@ -17,7 +17,7 @@
   </tr>
   <% @operations.each do |operation| %>
     <tr>
-      <td><%= url_for [@repository, operation] %></td>
+      <td><%= url_for operation_path(@project, @repository, @operation) %></td>
       <td><%= operation.id %></td>
       <td><%= operation.repository_id %></td>
       <td><%= operation.repository_type %></td>
@@ -26,8 +26,8 @@
       <td><%= operation.params %></td>
       <td><%= operation.body %></td>
       <td class="actions">
-        <%= link_to 'Editar', [:edit, @repository, operation] %>
-        <%= link_to 'Borrar', [@repository, operation], :method => :delete,
+        <%= link_to 'Editar', edit_operation_path(@project, @repository, @operation) %>
+        <%= link_to 'Borrar', operation_path(@project, @repository, @operation), :method => :delete,
           :confirm => "¿Borrar acción?" %>
       </td>
     </tr>

@@ -23,23 +23,45 @@
   $$.ProjectsPresenter = Backbone.View.extend({
     el: $(".browser.projects"),
 
+    events : {
+      "click .action-new" : "newProject"
+    },
+
     initialize: function() {
       _.bindAll(this, 'addOne', 'addAll');
       this.model.bind('add',     this.addOne);
       this.model.bind('refresh', this.addAll);
       this.list = this.$(".list");
     },
-
     addOne: function(project) {
       var view = new $$.ProjectPresenter({
         model: project
       });
       $(this.list).append(view.el);
     },
-
     addAll: function(model) {
       $$.loading(false, this.model.url);
       model.each(this.addOne);
+    },
+    newProject : function() {
+      $$.router.go("projects", "create");
+    }
+  });
+
+  $$.ProjectEditor = Backbone.View.extend({
+    events : {
+      "click .cancel" : "cancel"
+    },
+    initialize : function() {
+      this.el = $$.render.projectEditor(this.model.toJSON());
+      this.delegateEvents();
+    },
+    show : function() {
+      $("#content").html(this.el);
+    },
+    cancel : function() {
+      console.log("Cancel edit project");
+      history.forward();
     }
   });
 

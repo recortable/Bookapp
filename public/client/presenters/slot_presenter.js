@@ -10,6 +10,7 @@
       this.options = options;
       this.el = $$.make('div', 'slot');
       this.open = false;
+      this.operations_url = this.options.operations_url;
       this.delegateEvents();
     },
     render : function() {
@@ -29,8 +30,10 @@
     },
     saveEditor : function() {
       var body = this.$(".body").val();
-      var params = this.options.before_id ? {before : this.options.before_id} : {}
-      new $$.Operation({
+      var params = this.options.before_id ? {
+        before : this.options.before_id
+      } : {}
+      var operation = new $$.Operation({
         repository_id : this.options.repository_id,
         operation : {
           model : 'Paragraph',
@@ -38,7 +41,8 @@
           body : body,
           params : params
         }
-      }).create();
+      });
+      operation.url = this.operations_url;
       this.closeEditor();
     }
   });

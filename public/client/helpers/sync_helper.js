@@ -7,6 +7,8 @@
     'read'  : 'GET'
   };
 
+  var REMOVE = ['html_id', 'created_at', 'updated_at'];
+
   var getUrl = function(object) {
     if (!(object && object.url)) throw new Error("A 'url' property or function must be specified");
     return _.isFunction(object.url) ? object.url() : object.url;
@@ -16,7 +18,9 @@
     var type = methodMap[method];
 
     var data = (method === 'create' || method === 'update') ? model.toJSON() : null;
-    data && (delete data['html_id'])
+    if (data) {
+      _.each(REMOVE, function(item) {delete data[item];});
+    }
 
     if (data && model.http_params) {
       var source = data;

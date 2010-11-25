@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  def accessible_projects
+    Project.joins(:collaborators).where(:user_id => self.id) | Project.where(:public => true)
+  end
+
   protected
   def add_name
     self.name ||= self.email.split('@')[0]

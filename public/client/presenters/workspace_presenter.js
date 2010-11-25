@@ -5,9 +5,9 @@
 
     events: {
       "click #navigate-to-projects":          "openProjects",
-      "click #navigate-to-documents":         "openArchive",
-      "click #navigate-to-discussions":       "openEditDialog",
-      "click #navigate-to-index":             "openEditDialog"
+      "click #navigate-to-documents":         "openArticles",
+      "click #navigate-to-discussions":       "openDiscussions",
+      "click #navigate-to-index":             "openIndex"
     },
 
 
@@ -34,11 +34,15 @@
       else
         $$.router.go('projects')
     },
-
-    openArchive : function() {
+    openArticles : function() {
       var project_id = this.model.get('project_id');
       if (project_id)
         $$.router.go('projects', project_id, 'articles');
+    },
+    openDiscussions : function() {
+      var project_id = this.model.get('project_id');
+      if (project_id)
+        $$.router.go('projects', project_id, 'discussions');
     }
   });
 

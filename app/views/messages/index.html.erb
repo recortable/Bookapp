@@ -9,6 +9,7 @@
     <% @messages.each do |message| %>
       <tr>
         <td><%= message.id %></td>
+        <td><%= message.created_at.strftime("%d/%m/%Y %H:%M") %></td>
         <td><%= message.action %></td>
         <td><%= message.user_name %></td>
         <td><%= message.user.name if message.user %></td>

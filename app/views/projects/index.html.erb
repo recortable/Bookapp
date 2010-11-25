@@ -1,4 +1,4 @@
-<%= title "Projectos" %>
+<%= title "Investigaciones" %>
 
 <div class="actions">
   <%= link_to 'Crear proyecto', new_project_path %>
@@ -9,6 +9,10 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to project.title, project %></td>
+        <td><%= project.description %></td>
+        <td><%= project.public? ? 'Público' : 'Sólo colaboradorxs' %></td>
+        <td><%= project.stage %></td>
+
         <td class="actions">
           <%= link_to 'Operaciones', project_operations_path(project) %>
           <%= link_to 'Colaboradorxs', project_collaborators_path(project) %>

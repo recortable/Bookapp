@@ -8,7 +8,7 @@
     },
     initialize : function() {
       _.bindAll(this, 'render');
-      this.el = $$.render.paragraph(this.model);
+      this.el = $$.render.paragraph(this.model.toJSON());
       this.delegateEvents();
     },
     render : function() {

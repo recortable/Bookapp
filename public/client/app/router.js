@@ -1,9 +1,11 @@
 (function() {
 
   var namesMap = {
-    '' : 'booka',
+    '' : 'investigaciones',
     projects : 'investigaciones',
-    articles : 'articulos'
+    articles : 'articulos',
+    discussions : 'debates',
+    create : 'crear'
   }
 
   $$.router = {

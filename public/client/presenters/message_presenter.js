@@ -2,17 +2,13 @@
 
   var helpers = {
     fecha : function(context, fn) {
-      return fn(this).substring(5);
+      return $$.DateTime.toString(fn(this));
     }
   }
 
   $$.MessagePresenter = Backbone.View.extend({
     initialize : function() {
       this.el = $$.render.message(this.model.toJSON(), helpers);
-    },
-    create : function() {
-      var params = {message : this.model.toJSON()}
-      Backbone.sync('create', params);
     }
   });
 
@@ -47,7 +43,8 @@
       if (e.keyCode == 13) {
         this.model.create(new $$.Message({
           user_name : $$.workspace.get('user_name'),
-          body: this.input.val()
+          body: this.input.val(),
+          created_at : new Date()
         }));
         this.input.val('');
         return false;

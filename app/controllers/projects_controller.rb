@@ -1,16 +1,18 @@
 class ProjectsController < InheritedResources::Base
   respond_to :html, :xml, :json
-  before_filter :authenticate_user!
-  load_and_authorize_resource
-  before_filter :set_user_id_params, :only => [:create, :update]
+#  before_filter :set_user_id_params, :only => [:create, :update]
 
   def index
-    @projects = current_user.projects
+    @projects = current_user ? current_user.accessible_projects : Project.accessibles
+    #authorize!(params[:action], @projects)
     index!
   end
 
+  
+
   def show
-    @project = current_user.projects.find params[:id]
+    @project = Project.find params[:id]
+    #authorize!(params[:action], @project)
     respond_to do |format|
       format.html
       format.json { render :json => @project.to_json(:include => :operations)}

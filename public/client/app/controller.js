@@ -1,43 +1,32 @@
 (function() {
 
   var articles_cache = {};
-
+  var article_cache = {};
+  var discussions_cache = {};
+  
   $$.Controller = Backbone.Controller.extend({
     routes: {
       "":                                       "root",
-      "booka":                                  "projects",
-      "investigaciones/:project_id":            "project_call",
-      "investigaciones/:project_id/articulos":  "articles"
+      "investigaciones/:project_id/articulos":  "articles",
+      "investigaciones/:project_id/articulos/:article_id": "article",
+      "investigaciones/:project_id/debates" : "discussions"
     },
 
     root: function() {
       $$.router.go('');
     },
     
-    projects : function() {
-      console.log("controller#projects");
-      loadProjects(true);
-    },
-
-    project_call: function(project_id) {
-      console.log("controller#project_call");
-      $$.workspace.setProjectId(project_id);
-      $$.document = new $$.Document();
-      // TODO: quizá mover esto a documento
-      $$.document.url = "/projects/" + project_id + ".json"
-      $$.documentPresenter = new $$.DocumentPresenter({
-        model : $$.document
-      });
-      $$.loading(true, $$.document.url);
-      $$.document.fetch();
-      $$.documentPresenter.show();
-      loadProjects(true);
-    },
-    
     articles : function(project_id) {
       console.log("controller#articles", project_id);
       loadArticles(project_id, true);
-      loadProjects(false);
+    },
+    article : function(project_id, article_id) {
+      console.log("controller#article");
+      loadArticle(project_id, article_id, true);
+    },
+    discussions : function(project_id) {
+      console.log("controller#discussions", project_id);
+      loadDiscussions(project_id, true);
     }
   });
 
@@ -62,29 +51,56 @@
       $$.articles.fetch();
     }
     if (show_articles)
-      showInBrowser($$.articlesPresenter.el);
+      $$.layout.showInBrowser($$.articlesPresenter.el);
   }
 
-  function loadProjects(show_projects) {
-    if (!$$.projects) {
-      $$.projects = new $$.Projects();
-      $$.projectsPresenter = new $$.ProjectsPresenter({
-        model : $$.projects
+  function loadArticle(project_id, article_id) {
+    $$.workspace.setProjectId(project_id);
+    var cached = article_cache[article_id];
+    if (cached) {
+      $$.document = cached.document;
+      $$.documentPresenter = cached.presenter;
+    } else {
+      $$.document = new $$.Document();
+      $$.document.url = "/projects/" + project_id + "/articles/" + article_id + ".json"
+      $$.documentPresenter = new $$.DocumentPresenter({
+        model : $$.document
       });
-      $$.loading(true, $$.projects.url);
-      $$.projects.fetch();
-      $$.projects.bind('refresh', function() {
-        $$.workspace.setProjectId($$.workspace.get('project_id'));
-      });
+      $$.loading(true, $$.document.url);
+      $$.document.fetch();
+      $$.documentPresenter.show();
+      article_cache[article_id] = {
+        document : $$.document,
+        presenter : $$.documentPresenter
+      };
     }
-    if (show_projects)
-      showInBrowser($$.projectsPresenter.el);
+    loadArticles(project_id, true);
+  }
+
+  function loadDiscussions(project_id, show) {
+    $$.workspace.setProjectId(project_id);
+    var cached = discussions_cache[project_id];
+    if (cached) {
+      $$.discussions = cached.discussions;
+      $$.discussionsPresenter = cached.presenter;
+    } else {
+      $$.discussions = new $$.Discussions(null, {
+        project_id : project_id
+      });
+      $$.discussionsPresenter = new $$.DiscussionsPresenter({
+        model : $$.dicussions
+      });
+      discussions_cache[project_id] = {
+        discussions : $$.discussions,
+        presenter : $$.discussionsPresenter
+      };
+      $$.loading(true, $$.discussions.url);
+      $$.dicussions.fetch();
+    }
+    if (show)
+      $$.layout.showInBrowser($$.discussionsPresenter.el);
   }
   
-  function showInBrowser(el) {
-    console.log("SHOW IN BROWSER");
-    $("#browser-viewport > *").hide();
-    el.show();
-  }
+
 
 })();

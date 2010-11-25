@@ -11,14 +11,16 @@
 
 /** LEFT **/
 #left {overflow: hidden; position: absolute; left: 0; top: 0; width: @browser_size; bottom: 0;}
-#browser-viewport {position: absolute; left: 10px; top: 70px; bottom: 10px; right: 10px; .rounded; }
+#browser-viewport {position: absolute; left: 10px; top: 70px; bottom: 10px; right: 10px; .rounded; .shadow;}
 #site_navigation {width: 100%; overflow: hidden; margin: 2px 0 0 6px;}
 #site_navigation li {cursor: pointer; display: block; float: left; margin-left: 1px; overflow: hidden; text-indent: -1000em; }
 
 
 /** CENTER **/
 #center {overflow: hidden; position: absolute; top: 0; bottom: 0; left: @browser_size; right: @comm_size;}
-
+#content-viewport {position: absolute; left: 0; top: 70px; right: 0; bottom: 0;}
+#content {position: absolute; left: 10px; top: 0px; right: 10px; bottom: 35px; overflow-x: hidden;}
+#booka-status {height: 47px;}
 #user_controls {width: 100%; overflow: hidden; height: 23px;
                 background-color: @grismas; .round-bottom;}
 #user_controls a {display: block; float: left; margin-left: 5px; color: @grisclaro;}
@@ -28,8 +30,7 @@
 
 /** RIGHT **/
 #right {overflow: hidden; position: absolute; top: 0; right: 0; bottom: 0; width: @comm_size;}
-#comm-viewport {position: absolute; left: 10px; top: 70px; bottom: 10px; right: 10px; .rounded;}
-#content {position: absolute; left: 10px; top: 35px; right: 10px; bottom: 35px; overflow-x: hidden;}
+#comm-viewport {position: absolute; left: 10px; top: 70px; bottom: 10px; right: 10px; .rounded; .shadow;}
 
 #user_navigation {width: 100%; overflow: hidden;}
 #user_navigation {width: 100%; overflow: hidden; margin: 2px 0 0 -6px; padding-right: 10px;}

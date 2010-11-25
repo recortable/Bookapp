@@ -11,13 +11,15 @@
       <div id="head">
         <div class="session">
           <% if current_user %>
-            <%= current_user.name %>
+            <%= current_user.name %> |
+            <%= link_to "Salir", destroy_user_session_path %>
           <% else %>
             <%= link_to_rpx "Sign in", user_session_url %>
+            <%= link_to_rpx "Log in", user_session_url %>
           <% end %>
         </div>
         <div class="navigation">
-          <%= link_to 'Proyectos', projects_url %>
+          <%= link_to 'Investigaciones', projects_url %>
           <%= link_to 'Mensajes', messages_url %>
         </div>
       </div>

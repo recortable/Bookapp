@@ -1,14 +1,15 @@
 
-<%= simple_form_for([@repository, @operation]) do |f| %>
+<%= simple_form_for(operation_path(@project, @repository, @operation)) do |f| %>
 
   <div class="inputs">
-    <%= f.input :action, :collection => ['create'] %>
-    <%= f.input :model, :collection => ['Paragraph'] %>
+    <%= f.input :action, :collection => Operation::ACTIONS %>
+    <%= f.input :model, :collection => Operation::MODELS %>
     <%= f.input :params %>
     <%= f.input :body, :as => :text %>
   </div>
 
   <div class="actions">
     <%= f.submit %>
+    <%= link_to 'Cancelar', operations_path(@project, @repository) %>
   </div>
 <% end %>
