@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(:version => 20101123125203) do
     t.string   "roles",                :limit => 32
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "rpx_identifier"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

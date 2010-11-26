@@ -139,7 +139,4 @@ Devise.setup do |config|
   #   end
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
-
-  config.rpx_application_name = "booka"
-  RPXNow.api_key = "43d4c32921061e99ef68d8357e50df8401dc9123"
 end

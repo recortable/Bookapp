@@ -7,7 +7,7 @@
     'read'  : 'GET'
   };
 
-  var REMOVE = ['html_id', 'created_at', 'updated_at'];
+  var REMOVE = ['html_id', 'created_at', 'updated_at', 'operations'];
 
   var getUrl = function(object) {
     if (!(object && object.url)) throw new Error("A 'url' property or function must be specified");
@@ -17,6 +17,7 @@
   Backbone.sync = function(method, model, success, error) {
     var request_url = getUrl(model);
     $$.loading(true, request_url);
+    console.log("SYNC", method, model);
     var type = methodMap[method];
 
     var data = (method === 'create' || method === 'update') ? model.toJSON() : null;

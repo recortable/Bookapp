@@ -3,9 +3,11 @@
 .browser .floating_actions a {opacity: 0.5; float: right;}
 .browser .floating_actions a:hover {opacity: 1; }
 
+.browser .item {width: 100%; overflow: hidden;}
+.browser .item-actions {float: right; margin-right: 1em; font-size: 80%; color: @gris;}
+.browser .item-actions a {display: block; float: none;}
 .browser .item .title {font-size: 110%;}
 .browser .item .property {display: block; margin-left: 1em; color: gray;}
-
 
 .browser {
     height: 100%;
@@ -26,6 +28,7 @@
 .browser .list .item {
     padding: 3px; border-bottom: 1px solid @grisclaro;
 }
+.browser .list .item.disabled {background-color: @grisclaro; border-bottom: 1px solid @gris;}
 .browser .list div.item:hover {background-color: @grisclaro;}
 .browser .list div.item.not-selectable:hover {background-color: white;}
 .browser .list .item a {color: black;}

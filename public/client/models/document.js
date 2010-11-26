@@ -1,8 +1,6 @@
 (function() {
 
-  function operations_url(url) {
-    return url.substr(0, url.length - 5) + "/operations.json";
-  }
+
 
   $$.Document = Backbone.Model.extend({
     initialize : function() {

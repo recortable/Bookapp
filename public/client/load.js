@@ -4,13 +4,7 @@
     $$.render = new $$.Render();
     $$.render.grabTemplates();
     load_workspace();
-    new $$.Controller();
-    new $$.ProjectsController();
-    new $$.ArticlesController();
-    new $$.DiscussionsController();
-    new $$.SessionController();
-    Backbone.history.start();
-    console.log("client ready.");
+
   });
 
 
@@ -33,10 +27,20 @@
       model : $$.projects
     });
     
-    $$.workspace.fetch();
-
-    $$.workspacePresenter = new $$.WorkspacePresenter({
-      model : $$.workspace
+    $$.workspace.fetch({
+      success : function() {
+        new $$.ApplicationController();
+        new $$.ArticlesController();
+        new $$.DiscussionsController();
+        new $$.ProjectsController();
+        new $$.SessionController();
+        Backbone.history.start();
+        console.log("client ready.");
+      }
     });
-  }
+
+  $$.workspacePresenter = new $$.WorkspacePresenter({
+    model : $$.workspace
+  });
+}
 })(window.jQuery);

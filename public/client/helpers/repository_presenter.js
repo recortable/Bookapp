@@ -1,24 +1,45 @@
 (function($) {
+  function operations_url(url) {
+    return url.substr(0, url.length - 5) + "/operations.json";
+  }
+
   $$.RepositoryPresenter = Backbone.View.extend({
     init : function() {
-      _.bindAll(this, 'render', 'show', 'addOperation', 'addAllOperations');
+      console.log("REPOSITORY PRESENTER ", this.model);
+      _.bindAll(this, 'render', 'show', 'setOperations', 'executeOperation', 'executeAllOperations');
       this.model.bind("change", this.render);
-      this.model.operations.bind("add", this.addOperation);
-      this.model.operations.bind("refresh", this.addAllOperations);
       this.render();
+      this.operations = new $$.Operations(null, {
+        url : operations_url(this.model.url)
+      });
+      this.setOperations();
+      this.operations.bind("add", this.executeOperation);
+      this.operations.bind("refresh", this.executeAllOperations);
+      this.render();
+    },
+    setOperations : function() {
+      var models = [];
+      _.each(this.model.get('operations'), function(data) {
+        data.params = $.parseJSON(data.params);
+        var operation = new $$.Operation(data);
+        models.push(operation)
+      })
+      this.operations.refresh(models);
     },
     show : function() {
       $("#content").html(this.el);
     },
-    addOperation : function(operation) {
+    executeOperation : function(operation) {
+      console.log("EXECUTE: ", operation);
       var model = operation.get('model');
       var action = operation.get('action');
       var operator = this.operator[model];
       var operation_function = operator ? operator[action] : null;
       operation_function && operation_function(operation, this);
     },
-    addAllOperations : function() {
-      _.each(this.model.operations.models, this.addOperation);
+    executeAllOperations : function() {
+      console.log("Add all operations: " + this.operations);
+      _.each(this.operations.models, this.executeOperation);
     }
   });
 })(window.jQuery);

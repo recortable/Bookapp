@@ -4,12 +4,12 @@
       create : function(operation, presenter) {
         var slot = new $$.SlotPresenter({
           repository_id : operation.get('repository_id'),
-          operations : presenter.model.operations,
+          operations : presenter.operations,
           before_id : operation.get('id')
         });
         var para = new $$.ParagraphPresenter({
           model : operation,
-          operations : presenter.model.operations
+          operations : presenter.operations
         });
         var params = operation.get('params');
         if (params && params.before) {
@@ -20,7 +20,7 @@
         }
       },
       update : function(operation, presenter) {
-        var old_operation = presenter.model.operations.get(operation.get('params').model_id);
+        var old_operation = presenter.operations.get(operation.get('params').model_id);
         assert(old_operation, "Update paragraph should have an older operation");
         old_operation.set({
           body : operation.get('body')
@@ -50,17 +50,18 @@
       this.init();
     },
     render : function() {
-      var output = $$.render.document(this.model.toJSON());
-      this.paragraphs = $(".paragraphs", output);
-      this.comments = $(".comments-list", output);
-      this.addAllOperations();
-      this.paragraphs.after(new $$.SlotPresenter({
-        repository_id : this.model.get('id'),
-        operations : this.model.operations
-      }).el);
-      $(this.el).empty().append(output);
-
-      this.delegateEvents();
+      if (this.operations) {
+        var output = $$.render.document(this.model.toJSON());
+        this.paragraphs = $(".paragraphs", output);
+        this.comments = $(".comments-list", output);
+        this.executeAllOperations();
+        this.paragraphs.after(new $$.SlotPresenter({
+          repository_id : this.model.get('id'),
+          operations : this.operations
+        }).el);
+        $(this.el).empty().append(output);
+        this.delegateEvents();
+      }
       return true;
     },
     toggleNewComment : function() {

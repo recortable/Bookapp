@@ -2,10 +2,11 @@
 
   var namesMap = {
     '' : 'investigaciones',
-    projects : 'investigaciones',
-    articles : 'articulos',
-    discussions : 'debates',
-    create : 'crear'
+    'projects' : 'investigaciones',
+    'articles' : 'articulos',
+    'discussions' : 'debates',
+    'new' : 'crear',
+    'edit' : 'editar'
   }
 
   $$.router = {
@@ -14,6 +15,11 @@
     },
     go : function() {
       window.location.hash = build_url(arguments);
+    },
+    go_project : function() {
+      var params = ['projects', $$.workspace.get('project_id')];
+      _.each(arguments, function(arg) { params.push(arg)});
+       window.location.hash = build_url(params);
     }
   };
 

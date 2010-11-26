@@ -15,6 +15,10 @@ class OperationsController < InheritedResources::Base
     update! { (@project == @repository) ? [@project, :operations] : [@project, @repository, :operations] }
   end
 
+  def destroy
+    destroy! { (@project == @repository) ? [@project, :operations] : [@project, @repository, :operations] }
+  end
+
   protected
   def begin_of_association_chain
     @project = Project.find(params[:project_id])
@@ -22,8 +26,8 @@ class OperationsController < InheritedResources::Base
       @repository = @article = Article.find(params[:article_id])
     elsif params[:discussion_id].present?
       @repository = @discussion = Discussion.find(params[:discussion_id])
-    elsif params[:indice_id].present?
-      @repository = @indice = Indice.find(params[:indice_id])
+    elsif params[:book_id].present?
+      @repository = @book = Book.find(params[:book_id])
     else
       @repository = @project;
     end

@@ -16,7 +16,7 @@
       return true;
     },
     clicked : function() {
-      window.location.hash = "investigaciones/" + this.model.get('id');
+      $$.router.go('projects', this.model.get('id'));
     }
   });
 
@@ -40,10 +40,11 @@
       $(this.list).append(view.el);
     },
     addAll: function(model) {
+      $(this.list).empty();
       model.each(this.addOne);
     },
     newProject : function() {
-      $$.router.go("projects", "create");
+      $$.router.go("projects", "new");
     }
   });
 
@@ -55,12 +56,9 @@
       this.el = $$.render.projectEditor(this.model.toJSON());
       this.delegateEvents();
     },
-    show : function() {
-      $("#content").html(this.el);
-    },
     cancel : function() {
-      console.log("Cancel edit project");
-      history.forward();
+      $$.router.go('projects');
+      return false;
     }
   });
 

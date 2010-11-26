@@ -1,0 +1,19 @@
+<%= title "Usuarios registrados" %>
+
+
+<table>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user %></td>
+        <td><%= user.email %></td>
+        <td class="actions">
+          <%= link_to 'Editar', edit_user_path(user) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+
+

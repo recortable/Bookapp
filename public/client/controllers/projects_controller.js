@@ -22,7 +22,7 @@
       $$.editor = new $$.ProjectEditor({
         model :new $$.Project()
       });
-      $$.editor.show();
+      $$.layout.show($$.editor);
       loadProjects(true);
     }
   });

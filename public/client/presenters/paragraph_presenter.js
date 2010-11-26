@@ -12,6 +12,7 @@
       assert(this.operations, "Operations can't be null in ParagraphPresenter");
       this.el = $$.render.paragraph(this.model.toJSON());
       this.delegateEvents();
+      console.log("PARAGRPAH", this.model);
     },
     render : function() {
       this.$(".body").html(this.model.get('body'));
@@ -19,7 +20,7 @@
     },
     openEditor : function() {
       this.$(".display").hide();
-      this.$(".body").text(this.model.get('body'));
+      this.$(".editor-body").text(this.model.get('body'));
       this.$(".editor").show();
     },
     closeEditor : function() {
@@ -27,18 +28,17 @@
       this.$(".display").show();
     },
     saveEditor : function() {
-      console.log("SAVE!");
-      var body = this.$(".body").val();
+      var body = this.$(".editor-body").val();
       this.$(".body").html(body);
-      var params = {};
-      params.model_id = this.model.id;
-
+      var operation = this.model;
       this.operations.create(new $$.Operation({
-        repository_id : this.model.repository_id,
-        model : this.model.model,
+        repository_id : operation.get('repository_id'),
+        model : operation.get('model'),
         action : 'update',
         body : body,
-        params : params
+        params : {
+          model_id : operation.get('id')
+        }
       }));
       this.closeEditor();
       return false;
