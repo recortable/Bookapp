@@ -13,6 +13,7 @@
         _.each(workspace.get('projects'), function(project) {
           self.add(new $$.Project(project));
         });
+        $$.workspace.setProjectId($$.workspace.get('project_id'));
       });
     }
   });

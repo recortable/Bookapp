@@ -1,11 +1,9 @@
+<%= title "Artículo #{@article.title}" %>
 
-<%= show_for @project do |project| %>
-  <%= project.attribute :title %>
-  <%= project.attribute :description %>
-  <%= project.attribute :stage %>
-  <%= project.attribute :public %>
-<% end %>
+<div class="actions">
+  <%= link_to 'Investigación', @project %>
+  <%= link_to 'Artículos', project_articles_path(@project) %>
+</div>
 
+<%= render :partial => 'repository/show', :locals => {:repository => @article} %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>

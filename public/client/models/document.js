@@ -1,11 +1,18 @@
 (function() {
 
+  function operations_url(url) {
+    return url.substr(0, url.length - 5) + "/operations.json";
+  }
+
   $$.Document = Backbone.Model.extend({
     initialize : function() {
       _.bindAll(this, 'setOperations');
-      this.url = this.model.get('url');
-      assert(this.url, "document.url can't be null");
+      this.url = this.get('url');
+      assert(this.url, "url can't be null in documents.");
       this.bind('change', this.setOperations);
+      this.operations = new $$.Operations(null, {
+        url : operations_url(this.url)
+      });
     },
     setOperations : function() {
       var models = [];
@@ -14,7 +21,7 @@
         var operation = new $$.Operation(data);
         models.push(operation)
       })
-      this.operations = new $$.Operations(models);
+      this.operations.refresh(models);
     }
   });
 

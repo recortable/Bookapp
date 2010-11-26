@@ -1,10 +1,16 @@
 Bookapp::Application.routes.draw do
   resources :projects do
+    resources :operations
     resources :collaborators
     resources :articles do
       resources :operations
     end
-    resources :operations
+    resources :discussions do
+      resources :operations
+    end
+    resources :books do
+      resources :operations
+    end
   end
   resources :messages
 

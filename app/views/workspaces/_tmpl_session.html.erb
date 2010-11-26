@@ -1,0 +1,85 @@
+<script id="current_session" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>Sesión de usuario</h1>
+    </div>
+    <div class="main">
+      <form action="#new-project">
+        <div class="inputs">
+          Eres {{ user_name }}
+        </div>
+        <div class="actions">
+          <input id="project_submit" name="commit" type="submit" value="Cerrar sesión" />
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+
+<script id="login" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>Entrar a plataformabooka.net</h1>
+    </div>
+    <div class="main">
+      <form>
+        <div class="inputs">
+          <div class="input text required">
+            <label for="user_email">Tu correo electrónico:</label>
+            <input id="user_email" name="user[email]" size="30" type="text" value="" />
+          </div>
+          <div class="input password required">
+            <label for="user_password">Contraseña:</label>
+            <input id="user_password" name="user[password]" size="30" type="password" />
+          </div>
+          <div class="input boolean optional">
+            <input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1" />
+            <label for="user_remember_me">Recuérdame en este ordenador</label>
+          </div>
+        </div>
+        <div class="actions">
+          <input id="project_submit" name="commit" type="submit" value="Entrar" />
+          <a href="#">Cancelar</a>
+        </div>
+        <div class="info">
+          ¿Nueva/o aquí?: <a href="#alta">Darse de alta</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+
+<script id="sign_up" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>Darse de alta</h1>
+    </div>
+    <div class="main">
+      <div class="intro">Darse de alta en plataformabooka.net te permite participar colaborativamente en las distintas investigaciones en curso.
+      Eres más que bienvenida/o!</div>
+      <form action="#new-project">
+        <div class="inputs">
+          <div class="input text required">
+            <label for="user_email">Tu correo electrónico:</label>
+            <input id="user_email" name="user[email]" size="30" type="text" value="" />
+          </div>
+          <div class="input password required">
+            <label for="user_password">Contraseña:</label>
+            <input id="user_password" name="user[password]" size="30" type="password" />
+          </div>
+          <div class="input password required">
+            <label for="user_password">Repite la contraseña:</label>
+            <input id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" />
+          </div>
+        </div>
+        <div class="actions">
+          <input id="project_submit" name="commit" type="submit" value="Darse de alta" />
+          <a href="#">Cancelar</a>
+        </div>
+        <div class="info">
+          ¿Te diste de alta previamente?: <a href="#entrar">Entrar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>

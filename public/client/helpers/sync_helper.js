@@ -15,12 +15,21 @@
   };
   
   Backbone.sync = function(method, model, success, error) {
+    var request_url = getUrl(model);
+    $$.loading(true, request_url);
     var type = methodMap[method];
 
     var data = (method === 'create' || method === 'update') ? model.toJSON() : null;
+
+    // remove some data
     if (data) {
       _.each(REMOVE, function(item) {delete data[item];});
     }
+    // serialize some things
+    if (data && data.params) {
+      data.params = JSON.stringify(data.params);
+    }
+
 
     if (data && model.http_params) {
       var source = data;
@@ -29,19 +38,24 @@
     }
     var modelJSON = data ? JSON.stringify(data) : null;
 
+
     // Default JSON-request options.
     var params = {
-      url:          getUrl(model),
+      url:          request_url,
       type:         type,
       contentType:  'application/json',
       data:         modelJSON,
       dataType:     'json',
       processData:  false,
-      success:      success,
-      error:        error
+      success: function(response) {
+        success(response);
+        $$.loading(false, request_url);
+      },
+      error: function(request, textStatus, errorThrown) {
+        $$.loading.error("Se ha producido un error (" + textStatus + "): " + errorThrown);
+        error && (error(request, textStatus, errorThrown));
+      }
     };
-
-    console.log("SYNC", params);
 
     // Make the request.
     $.ajax(params);

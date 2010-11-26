@@ -1,0 +1,8 @@
+
+<%= show_for repository do |repository| %>
+  <%= repository.attribute :title %>
+  <%= repository.attribute :description %>
+  <%= repository.attribute :type %>
+  <%= repository.association :user %>
+  <%= repository.association :project %>
+<% end %>

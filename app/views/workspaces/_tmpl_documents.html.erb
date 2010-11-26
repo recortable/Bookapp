@@ -25,18 +25,20 @@
   </div>
 </script>
 
-<script id="clip_editor" type="text/html">
-  <div class="clip_editor editor">
-    <h1>Añadir un párrafo (repo: {{repository_id}} before: {{before_id}})</h1>
-    <form action="#">
-      <div class="inputs">
-        <textarea class="body" cols="30" rows="50"></textarea>
-      </div>
-      <div class="actions">
-        <input type="submit" value="Guardar" />
-        <a class="cancel">Cancelar</a>
-      </div>
-    </form>
+<script id="slot" type="text/html">
+  <div class="slot">
+    <div class="clip_editor editor" style="display: none;">
+      <h1>Añadir un párrafo (repo: {{repository_id}} before: {{before_id}})</h1>
+      <form action="#">
+        <div class="inputs">
+          <textarea class="body" cols="30" rows="50"></textarea>
+        </div>
+        <div class="actions">
+          <input type="submit" value="Guardar" />
+          <a class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
   </div>
 </script>
 
@@ -46,11 +48,11 @@
       <div class="actions">
         <a class="action-edit iconic iconic-plus_alt_16x16">Editar</a>
       </div>
-      <div id="paragraph-{{id}}" class="section">{{{body}}}</div>
+      <div id="paragraph-{{id}}" class="body">{{{body}}}</div>
     </div>
     <div class="paragraph-editor editor" style="display: none;">
       <h1>Editar un párrafo (para: {{id}})</h1>
-      <form action="#">
+      <form>
         <div class="inputs">
           <textarea class="body" cols="30" rows="5"></textarea>
         </div>

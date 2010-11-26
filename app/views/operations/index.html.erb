@@ -1,6 +1,7 @@
 <%= title("Operaciones de #{@repository.title}") %>
 
 <div class="actions">
+  <%= link_to 'Volver', [@project, @repository] %>
   <%= link_to 'Añadir operación', new_operation_path(@project, @repository) %>
 </div>
 
@@ -26,8 +27,8 @@
       <td><%= operation.params %></td>
       <td><%= operation.body %></td>
       <td class="actions">
-        <%= link_to 'Editar', edit_operation_path(@project, @repository, @operation) %>
-        <%= link_to 'Borrar', operation_path(@project, @repository, @operation), :method => :delete,
+        <%= link_to 'Editar', edit_operation_path(@project, @repository, operation) %>
+        <%= link_to 'Borrar', operation_path(@project, @repository, operation), :method => :delete,
           :confirm => "¿Borrar acción?" %>
       </td>
     </tr>

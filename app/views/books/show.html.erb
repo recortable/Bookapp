@@ -1,0 +1,9 @@
+<%= title "Índice #{@book.title}" %>
+
+<div class="actions">
+  <%= link_to 'Investigación', @project %>
+  <%= link_to 'Artículos', project_books_path(@project) %>
+</div>
+
+<%= render :partial => 'repository/show', :locals => {:repository => @book} %>
+

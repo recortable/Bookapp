@@ -9,11 +9,7 @@
       requests.push(url);
     } else if ((index = $.inArray(url, requests)) != -1) {
       requests.splice(index, 1);
-    } else {
-      console.log("LOADING URL NOT FOUND!", url);
     }
-    console.log("LOAD " + (starts ? 'STARTS: ' : 'STOPS: ') + url, requests);
-
     var loader = $("#working");
     
     if (requests.length == 0) {
@@ -21,5 +17,9 @@
     } else {
       loader.show();
     }
+  };
+
+  $$.loading.error = function(message) {
+    $("#workin").html(message).show();
   }
-})(jQuery);
+})(window.jQuery);

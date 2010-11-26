@@ -28,9 +28,9 @@
       <div id="left">
         <ul id="site_navigation">
           <li class="sprite-nav sprite-nav-entranceicon active" id="navigate-to-projects">Investigaciones</li>
-          <li class="sprite-nav sprite-nav-archivesicon" id="navigate-to-documents">Artículos</li>
-          <li class="sprite-nav sprite-nav-editionicon navigation-disabled" id="navigate-to-discussions">Discusiones</li>
-          <li class="sprite-nav sprite-nav-bookaicon navigation-disabled" id="navigate-to-index">Indice</li>
+          <li style="display: none" class="sprite-nav sprite-nav-archivesicon" id="navigate-to-documents">Artículos</li>
+          <li style="display: none" class="sprite-nav sprite-nav-editionicon navigation-disabled" id="navigate-to-discussions">Discusiones</li>
+          <li style="display: none" class="sprite-nav sprite-nav-bookaicon navigation-disabled" id="navigate-to-index">Indice</li>
         </ul>
         <div id="browser-viewport">
           <div class="browser projects" style="display: none;">
@@ -44,16 +44,30 @@
             <h1>Artículos</h1>
             <div class="list"></div>
             <div class="actions">
-              <a class="iconic iconic-plus_alt_16x16" title="Crear un nuevo archivo">Añadir artículo</a>
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Crear un nuevo archivo">Añadir artículo</a>
             </div>
           </div>
+          <div class="browser discussions" style="display: none;">
+            <h1>Temas de debate</h1>
+            <div class="list"></div>
+            <div class="actions">
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Añadir tema de debate">Añadir artículo</a>
+            </div>
+          </div>
+
         </div>
       </div>
       <div id="center">
         <div id="user_controls">
-          <a id="plataformabooka" href="#">Plataformabooka.net > </a>
-          <a id="current_project" href="#"></a>
-          <div id="current_user">
+          <div id="location">
+            <a id="plataformabooka" href="#">Plataformabooka.net > </a>
+            <a id="current_project" href="#"></a>
+          </div>
+          <a href="#sesion" id="current_user" style="display: none;">
+          </a>
+          <div id="session_controls">
+            ¿Quién eres?: <a href="#entrar" id="login">Entrar</a>
+            ¿Nuevo aquí?: <a href="#alta" id="login">Darse de alta</a>
           </div>
         </div>
         <div id="booka-status"></div>
@@ -68,8 +82,8 @@
       </div>
       <div id="right">
         <ul id="user_navigation">
-          <li><div class="sprite-nav sprite-nav-loginicon" id="navigate-to-users" rel="address:/colaboradorxs">Colaboradorxs</div></li>
-          <li><div class="sprite-nav sprite-nav-contacticon" id="navigate-to-activities" rel="address:/actividades">Actividad</div></li>
+          <li style="display:none;" class="sprite-nav sprite-nav-loginicon" id="navigate-to-users">Colaboradorxs</li>
+          <li class="sprite-nav sprite-nav-contacticon" id="navigate-to-activities">Actividad</li>
         </ul>
         <div id="comm-viewport">
           <div id="communicator" class="comm">
@@ -79,7 +93,11 @@
               <textarea cols="6" rows="2" class="body"></textarea>
             </div>
           </div>
-          <div id="users" class="comm" style="display: none;">
+          <div id="users" class="browser users" style="display: none;">
+            <h1>Tus colaboradorxs</h1>
+            <div class="info">
+
+            </div>
             <div class="list"></div>
             <div class="controls">
             </div>
@@ -103,5 +121,7 @@
   <%= render 'tmpl_documents' %>
   <%= render 'tmpl_projects' %>
   <%= render 'tmpl_discussions' %>
+  <%= render 'tmpl_session' %>
+  <%= render 'tmpl_collaborators' %>
 </body>
 </html>

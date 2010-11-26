@@ -3,6 +3,10 @@
     showInBrowser : function(el) {
       $("#browser-viewport > *").hide();
       el.show();
+    },
+    showInComm : function(el) {
+      $("#comm-viewport > *").hide();
+      el.show();
     }
   }
 })(window.jQuery);

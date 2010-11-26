@@ -1,4 +1,4 @@
-<%= title "Editando artículo de #{@archive}" %>
+<%= title "Editando artículo #{@article.title}" %>
 
-<%= render 'form' %>
+<%= render :partial => '/repository/form', :locals => {:repository => @article} %>
 

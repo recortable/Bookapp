@@ -33,7 +33,6 @@
       $$.projectsPresenter = new $$.ProjectsPresenter({
         model : $$.projects
       });
-      $$.loading(true, $$.projects.url);
       $$.projects.fetch();
       $$.projects.bind('refresh', function() {
         $$.workspace.setProjectId($$.workspace.get('project_id'));
@@ -45,14 +44,19 @@
 
   function loadProjectCall(project_id) {
     $$.workspace.setProjectId(project_id);
-    $$.document = new $$.Document();
-    // TODO: quizá mover esto a documento
-    $$.document.url = "/projects/" + project_id + ".json"
-    $$.documentPresenter = new $$.DocumentPresenter({
-      model : $$.document
+
+    var cached = $$.Cache('call-' + project_id, project_id, function() {
+      var document = new $$.Document({
+        url : "/projects/" + project_id + ".json"
+      });
+      var presenter = new $$.DocumentPresenter({
+        model : document
+      });
+      document.fetch();
+      return [document, presenter];
     });
-    $$.loading(true, $$.document.url);
-    $$.document.fetch();
+    $$.document = cached[0];
+    $$.documentPresenter = cached[1];
     $$.documentPresenter.show();
   }
 

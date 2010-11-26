@@ -1,4 +1,11 @@
+<%= title "Investigación '#{@project.title}'" %>
 
+<div class="actions">
+  <%= link_to 'Operaciones', project_operations_path(@project) %> |
+  <%= link_to 'Articulos', project_articles_path(@project) %>
+  <%= link_to 'Discusiones', project_discussions_path(@project) %>
+  <%= link_to 'Índices', project_books_path(@project) %>
+</div>
 <%= show_for @project do |project| %>
   <%= project.attribute :title %>
   <%= project.attribute :description %>
@@ -6,6 +13,3 @@
   <%= project.attribute :public %>
 <% end %>
 
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>

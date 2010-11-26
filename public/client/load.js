@@ -4,8 +4,11 @@
     $$.render = new $$.Render();
     $$.render.grabTemplates();
     load_workspace();
-    $$.controller = new $$.Controller();
+    new $$.Controller();
     new $$.ProjectsController();
+    new $$.ArticlesController();
+    new $$.DiscussionsController();
+    new $$.SessionController();
     Backbone.history.start();
     console.log("client ready.");
   });
@@ -21,12 +24,15 @@
     $$.messagesPresenter = new $$.MessagesPresenter({
       model : $$.messages
     });
+    $$.collaborators = new $$.Collaborators();
+    $$.collaboratorsPresenter = new $$.CollaboratorsPresenter({
+      model : $$.collaborators
+    });
     $$.projects = new $$.Projects();
     $$.projectsPresenter = new $$.ProjectsPresenter({
       model : $$.projects
     });
     
-    $$.loading(true, $$.workspace.url);
     $$.workspace.fetch();
 
     $$.workspacePresenter = new $$.WorkspacePresenter({

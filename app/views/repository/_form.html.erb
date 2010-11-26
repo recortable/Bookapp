@@ -1,4 +1,4 @@
-<%= simple_form_for([@project, @article]) do |f| %>
+<%= simple_form_for([@project, repository]) do |f| %>
 
   <div class="inputs">
     <%= f.input :title %>
@@ -7,6 +7,6 @@
 
   <div class="actions">
     <%= f.submit %>
-    <%= link_to 'Cancelar', project_articles_path(@project) %>
+    <%= link_to 'Cancelar', [@project, repository] %>
   </div>
 <% end %>

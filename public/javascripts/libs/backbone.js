@@ -878,15 +878,15 @@
   });
 
   // The self-propagating extend function that Backbone classes use.
-  var extend = function (protoProps, classProps) {
+  Backbone.extend = function (protoProps, classProps) {
     var child = inherits(this, protoProps, classProps);
-    child.extend = extend;
+    child.extend = Backbone.extend;
     return child;
   };
 
   // Set up inheritance for the model, collection, and view.
   Backbone.Model.extend = Backbone.Collection.extend =
-  Backbone.Controller.extend = Backbone.View.extend = extend;
+  Backbone.Controller.extend = Backbone.View.extend = Backbone.extend;
 
   // Map from CRUD to HTTP for our default `Backbone.sync` implementation.
   var methodMap = {

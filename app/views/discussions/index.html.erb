@@ -1,0 +1,8 @@
+<%= title "Debates de '#{@project.title}'"  %>
+
+<div class="actions">
+  <%= link_to 'Investigación', project_path(@project) %>
+  <%= link_to 'Añadir debate', new_project_discussion_path(@project) %>
+</div>
+
+<%= render :partial => '/repository/index', :locals => {:repositories => @discussions} %>

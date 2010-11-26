@@ -1,4 +1,4 @@
-class ArticlesController  < InheritedResources::Base
+class ArticlesController < InheritedResources::Base
 #  before_filter :authenticate_user!, :unless => :is_json_request?
   respond_to :html, :xml, :json
   belongs_to :project

@@ -1,0 +1,15 @@
+
+<table>
+  <% repositories.each do |repository| %>
+    <tr>
+      <td><%= link_to repository.title, [@project, repository] %></td>
+      <td><%= repository.type %></td>
+      <td><%= repository.user_id %></td>
+      <td><%= repository.description %></td>
+      <td class="actions">
+        <%= link_to 'Operaciones', [@project, repository, :operations] %>
+        |<%= link_to 'Editar', [:edit, @project, repository] %>
+      </td>
+    </tr>
+  <% end %>
+</table>

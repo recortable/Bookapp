@@ -1,21 +1,8 @@
-<%= title "Archivos de #{@project.title}"  %>
+<%= title "Artículos de #{@project.title}"  %>
 
 <div class="actions">
-  <%= link_to 'Añadir archivo', new_project_article_path(@project) %>
+  <%= link_to 'Investigación', project_path(@project) %>
+  <%= link_to 'Añadir artículo', new_project_article_path(@project) %>
 </div>
 
-
-<table>
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= link_to article.title, [@project, article] %></td>
-      <td><%= article.type %></td>
-      <td><%= article.user_id %></td>
-      <td><%= article.description %></td>
-      <td class="actions">
-        <%= link_to 'Operaciones', project_article_operations_path(@project, article) %>
-        |<%= link_to 'Editar', edit_project_article_path(@project, article) %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<%= render :partial => '/repository/index', :locals => {:repositories => @articles} %>

@@ -14,9 +14,11 @@
         <td><%= project.stage %></td>
 
         <td class="actions">
-          <%= link_to 'Operaciones', project_operations_path(project) %>
           <%= link_to 'Colaboradorxs', project_collaborators_path(project) %>
-          <%= link_to 'Artículos', project_articles_path(project) %> |
+          <%= link_to 'Operaciones', project_operations_path(project) %> |
+          <%= link_to 'Artículos', project_articles_path(project) %>
+          <%= link_to 'Discusiones', project_discussions_path(project) %>
+          <%= link_to 'Indices', project_books_path(project) %> |
           <%= link_to 'Editar', edit_project_path(project) %>
         </td>
       </tr>

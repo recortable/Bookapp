@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     Project.joins(:collaborators).where(:user_id => self.id) | Project.where(:public => true)
   end
 
+  def as_json(options = {})
+    super(:only => [:id, :email, :name])
+  end
+
   protected
   def add_name
     self.name ||= self.email.split('@')[0]

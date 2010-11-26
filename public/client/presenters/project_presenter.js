@@ -40,7 +40,6 @@
       $(this.list).append(view.el);
     },
     addAll: function(model) {
-      $$.loading(false, this.model.url);
       model.each(this.addOne);
     },
     newProject : function() {

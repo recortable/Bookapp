@@ -1,8 +1,34 @@
 <script id="discussion" type="text/html">
-  <div id="page" class="doc">
+  <div class="discussion item">
+    <p class="title">{{ title }}</p>
+    <p class="description"> {{ description }}</p>
+  </div>
+</script>
+
+<script id="discussion_document" type="text/html">
+  <div class="discussion document">
     <div id="document_{{id}}" class="head">
       <h1>{{title}}</h1>
     </div>
-    <div class="paragraphs"></div>
+    <div class="decissions list"></div>
+    <div class="actions list"></div>
+  </div>
+  <div class="discussion comments">
+    <div class="head">
+      <h1>Debate sobre '{{title}}'</h1>
+    </div>
+    <div class="comments-list"></div>
+    <div class="comment editor" style="display: none;">
+      <form action="#">
+        <textarea cols="5" rows="5"></textarea>
+        <div class="actions">
+          <input type="submit" value="Comentar" />
+          <a class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+    <div class="comment actions">
+      <a class="new-comment">Añadir comentario</a>
+    </div>
   </div>
 </script>

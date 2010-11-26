@@ -10,6 +10,10 @@ class Workspace
       @user_id = current_user.id
       @user_name = current_user.name
       @projects = current_user.projects
+      @collaborators = []
+      @projects.each do |project|
+        @collaborators += project.collaborators
+      end
     else
       @projects = Project.accessibles
     end
