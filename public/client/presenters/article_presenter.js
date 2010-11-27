@@ -67,19 +67,11 @@
       'submit form' : 'submit'
     },
     initialize : function() {
+      var isNew = this.model.isNew();
       var data = this.model.toJSON();
-      if (this.model.isNew()) {
-        var  project = $$.projects.get(this.model.get('project_id'));
-        _.extend(data, {
-          editor_title : 'Añadir un artículo a ' + project.get('title'),
-          editor_submit : 'Crear artículo'
-        });
-      }else {
-        _.extend(data, {
-          editor_title : 'Editar artículo ' + this.model.get('title'),
-          editor_submit : 'Guardar artículo'
-        });
-      }
+      var  project = $$.projects.get(this.model.get('project_id'));
+      data.editor_title = isNew ? 'Añadir un artículo a ' + project.get('title') : 'Editar artículo ' + this.model.get('title');
+      data.editor_submit = isNew ? 'Crear artículo' : 'Guardar artículo';
       this.el = $$.render.articleEditor(data);
       this.delegateEvents();
     },

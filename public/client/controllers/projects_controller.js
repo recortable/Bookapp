@@ -2,19 +2,30 @@
 
   $$.ProjectsController = Backbone.Controller.extend({
     routes : {
-      "investigaciones": "projects",
+      "investigaciones": "index",
       "investigaciones/crear": "newProject",
-      "investigaciones/:project_id": "project_call"
+      "investigaciones/:project_id": "show",
+      "investigaciones/:project_id/editar": "edit"
     },
-    projects : function() {
-      log("controller#projects");
-      loadProjects(true);
+    index : function(invisible) {
+      log("projects#index");
+      $$.layout.showInBrowser($$.projectsPresenter);
+      if (!invisible)
+        $$.layout.clear();
     },
-    project_call: function(project_id) {
+    show : function(project_id) {
       if ($$.Util.isNumber(project_id)) {
-        log("controller#project_call");
-        loadProjectCall(project_id);
-        $$.layout.showInBrowser($$.projectsPresenter.el);
+        log("projects#show");
+        $$.workspace.setProjectId(project_id);
+        var url = "/projects/" + project_id + ".json";
+        $$.Cache2.refresh(url, $$.projects, project_id, function(project) {
+          var token = url + "-DocumentPresenter";
+          $$.Cache2.presenter(token, $$.DocumentPresenter, project, function(presenter) {
+            console.log("PRESENTER", presenter);
+            $$.layout.show(presenter);
+          });
+        });
+        $$.layout.showInBrowser($$.projectsPresenter);
       }
     },
     newProject : function() {
@@ -23,41 +34,17 @@
         model :new $$.Project()
       });
       $$.layout.show($$.editor);
-      loadProjects(true);
+      $$.layout.showInBrowser($$.projectsPresenter);
+    },
+    edit : function(project_id) {
+      var url = "/projects/" + project_id + ".json";
+      $$.Cache2.refresh(url, $$.projects, project_id, function (project) {
+        $$.editor = new $$.ProjectEditor({
+          model : project
+        });
+        $$.layout.show($$.editor);
+      });
+      $$.layout.showInBrowser($$.projectsPresenter);
     }
   });
-
-  function loadProjects(show_projects) {
-    if (!$$.projects) {
-      $$.projects = new $$.Projects();
-      $$.projectsPresenter = new $$.ProjectsPresenter({
-        model : $$.projects
-      });
-      $$.projects.fetch();
-      $$.projects.bind('refresh', function() {
-        $$.workspace.setProjectId($$.workspace.get('project_id'));
-      });
-    }
-    if (show_projects)
-      $$.layout.showInBrowser($$.projectsPresenter.el);
-  }
-
-  function loadProjectCall(project_id) {
-    $$.workspace.setProjectId(project_id);
-
-    var cached = $$.Cache('call-' + project_id, project_id, function() {
-      var document = new $$.Document({
-        url : "/projects/" + project_id + ".json"
-      });
-      var presenter = new $$.DocumentPresenter({
-        model : document
-      });
-      document.fetch();
-      return [document, presenter];
-    });
-    $$.document = cached[0];
-    $$.documentPresenter = cached[1];
-    $$.documentPresenter.show();
-  }
-
 })();

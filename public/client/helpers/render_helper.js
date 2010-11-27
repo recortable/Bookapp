@@ -96,5 +96,9 @@
     };
   }
 
-
+  $$.Render.div = function(classes) {
+    var el = $(document.createElement('div'));
+    el.attr('class', classes);
+    return el;
+  }
 })();

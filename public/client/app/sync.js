@@ -7,7 +7,7 @@
     'read'  : 'GET'
   };
 
-  var REMOVE = ['html_id', 'created_at', 'updated_at', 'operations'];
+  var FILTER = ['id', 'user_id', 'html_id', 'created_at', 'updated_at', 'operations', 'collaborators'];
 
   var getUrl = function(object) {
     if (!(object && object.url)) throw new Error("A 'url' property or function must be specified");
@@ -24,7 +24,7 @@
 
     // remove some data
     if (data) {
-      _.each(REMOVE, function(item) {delete data[item];});
+      _.each(FILTER, function(item) {delete data[item];});
     }
     // serialize some things
     if (data && data.params) {

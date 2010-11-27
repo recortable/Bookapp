@@ -1,12 +1,12 @@
 (function($) {
   $$.layout = {
-    showInBrowser : function(el) {
+    showInBrowser : function(presenter) {
       $("#browser-viewport > *").hide();
-      el.show();
+      presenter.el.show();
     },
-    showInComm : function(el) {
+    showInComm : function(presenter) {
       $("#comm-viewport > *").hide();
-      el.show();
+      presenter.el.show();
     },
     show : function(presenter) {
       $("#content").html(presenter.el);

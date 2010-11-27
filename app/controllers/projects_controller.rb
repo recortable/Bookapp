@@ -8,20 +8,24 @@ class ProjectsController < InheritedResources::Base
     index!
   end
 
-  
-
   def show
     @project = Project.find params[:id]
     #authorize!(params[:action], @project)
-    respond_to do |format|
+    show! do |format|
       format.html
       format.json { render :json => @project.to_json(:include => :operations)}
     end
   end
 
-  def set_user_id_params
-    params[:project][:user_id] = current_user.id
+  def update
+    update! do |format|
+      format.html
+      format.json { render :json => @project.to_json(:include => :operations)}
+    end
   end
 
-
+  def create
+    params[:project][:user_id] = current_user.id
+    create!
+  end
 end

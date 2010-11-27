@@ -34,9 +34,10 @@ a:hover { text-decoration: underline;}
 .rounded {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
-.round-bottom {border-radius: 0 0 3px 3px;}
-.round-top {border-radius: 3px 3px 0 0;}
+.round-bottom {border-radius: 0 0 3px 3px; -moz-border-radius: 0 0 3px 3px;}
+.round-top {border-radius: 3px 3px 0 0; -moz-border-radius: 3px 3px 0 0;}
 
 .button {
   cursor: pointer;

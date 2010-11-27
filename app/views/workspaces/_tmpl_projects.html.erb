@@ -1,35 +1,29 @@
 <script id="project" type="text/html">
-  <div class="project item">
+    <div class="item-actions"><a href="#" class="action-edit">Editar</a></div>
     <p class="title">{{ title }}</p>
     <p class="description"> {{ description }}</p>
     <p class="property collaborators">?? personas colaborando</p>
-  </div>
 </script>
 
 <script id="projectEditor" type="text/html">
   <div class="editor">
     <div class="header">
-      <h1>Añadir un nuevo proyecto</h1>
+      <h1>{{editor_title}}</h1>
     </div>
     <div class="main">
       <form action="#new-project">
         <div class="inputs">
           <div class="input string required">
-            <label class="string required" for="project_title">Title</label>
-            <input class="string required" id="project_title" maxlength="256" name="project[title]" size="50" type="text" value="Proyecto dos" />
+            <label class="string required" for="project_title">Título</label>
+            <input class="string required" id="project_title" maxlength="256" name="project[title]" size="50" type="text" value="{{title}}" />
           </div>
           <div class="input text optional">
-            <label class="text optional" for="project_description"> Description</label>
-            <textarea class="text optional" cols="40" id="project_description" name="project[description]" rows="20"></textarea>
-          </div>
-          <div class="input boolean optional">
-            <input checked="checked" class="boolean optional" id="project_public" name="project[public]" type="checkbox" value="1" />
-            <label class="boolean optional" for="project_public">Visible por personas no colaboradoras</label>
+            <label class="text optional" for="project_description">Descripción</label>
+            <textarea class="text optional" cols="40" id="project_description" name="project[description]" rows="20">{{description}}</textarea>
           </div>
           <div class="input select optional">
-            <label class="select optional" for="project_stage"> Stage</label>
+            <label class="select optional" for="project_stage">Fase de la investigación</label>
             <select class="select optional" id="project_stage" name="project[stage]">
-              <option value=""></option>
               <option value="calls">Presentación de convocatoria</option>
               <option value="archives">Presentación de propuestas</option>
               <option value="discuss">Edición / toma de decisiones</option>
@@ -37,9 +31,13 @@
             </select>
           </div>
         </div>
+        <div class="input boolean optional">
+          <input checked="checked" class="boolean optional" id="project_public" name="project[public]" type="checkbox" value="{{public}}" />
+          <label class="boolean optional" for="project_public">Visible por personas no colaboradoras</label>
+        </div>
         <div class="actions">
-          <input id="project_submit" name="commit" type="submit" value="Update Project" />
-          <a class="cancel">Cancelar</a>
+          <input id="project_submit" name="commit" type="submit" value="{{editor_submit}}" />
+          <a href="#" class="cancel">Cancelar</a>
         </div>
       </form>
     </div>
