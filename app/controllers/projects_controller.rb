@@ -25,7 +25,7 @@ class ProjectsController < InheritedResources::Base
   end
 
   def create
-    params[:project][:user_id] = current_user.id
+    params[:project][:user_id] = current_user.id 
     create!
   end
 end

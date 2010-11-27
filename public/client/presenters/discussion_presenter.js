@@ -1,5 +1,5 @@
 (function($) {
- var Operator = {
+  var Operator = {
     Comment : {
 
   }
@@ -51,6 +51,7 @@
       this.model.bind('add',     this.addOne);
       this.model.bind('refresh', this.addAll);
       this.list = this.$(".list");
+      this.addAll(this.model);
     },
     addOne: function(discussion) {
       var view = new $$.DiscussionPresenter({
@@ -58,8 +59,13 @@
       });
       $(this.list).append(view.el);
     },
-    addAll: function(model) {
-      model.each(this.addOne);
+    addAll: function(models) {
+      if (models.length == 0) {
+        this.list.html($$.render.discussions_empty($$.workspace.get('project').toJSON()));
+      } else {
+        this.list.empty();
+        models.each(this.addOne);
+      }
     },
     newDiscussion : function() {
       $$.router.go("discussions", "create");

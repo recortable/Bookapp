@@ -7,14 +7,12 @@
       'click .action-edit' : 'editProject'
     },
     initialize: function() {
-      console.log("projectPresenter#initialize", this.model);
       _.bindAll(this, 'render');
       this.el = $$.Render.div('project item');
       this.model.bind('change', this.render);
       this.render();
     },
     render: function() {
-      console.log("project_presenter#render");
       this.el.attr('id', "project-" + this.model.get('id'));
       this.el.html($$.render.project(this.model.toJSON()));
       this.delegateEvents();
@@ -58,6 +56,8 @@
     }
   });
 
+  // ProjectEditor
+  // -------------
   $$.ProjectEditor = Backbone.View.extend({
     events : {
       "click .cancel" : "cancel",

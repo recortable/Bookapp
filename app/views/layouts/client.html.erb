@@ -33,25 +33,25 @@
           <li style="display: none" class="sprite-nav sprite-nav-bookaicon navigation-disabled" id="navigate-to-index">Indice</li>
         </ul>
         <div id="browser-viewport">
-          <div class="browser projects">
+          <div class="browser projects" style="display: none;">
             <h1>Investigaciones</h1>
             <div class="list"></div>
             <div class="actions">
-              <a class="action-new iconic iconic-plus_alt_16x16" title="Crear un nuevo proyecto">Crear proyecto</a>
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Añadir una investigación">Añadir investigación</a>
             </div>
           </div>
           <div class="browser articles" style="display: none;">
             <h1>Artículos</h1>
             <div class="list"></div>
             <div class="actions">
-              <a class="action-new iconic iconic-plus_alt_16x16" title="Crear un nuevo archivo">Añadir artículo</a>
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Crear un nuevo artículo">Crear artículo</a>
             </div>
           </div>
           <div class="browser discussions" style="display: none;">
             <h1>Temas de debate</h1>
             <div class="list"></div>
             <div class="actions">
-              <a class="action-new iconic iconic-plus_alt_16x16" title="Añadir tema de debate">Añadir artículo</a>
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Añadir tema de debate">Añadir tema de debate</a>
             </div>
           </div>
 
@@ -90,7 +90,9 @@
             <div class="list"></div>
             <div class="controls">
               <label class="status">Conectando...</label>
-              <textarea cols="6" rows="2" class="body"></textarea>
+              <div id="messages-input">
+                <textarea cols="6" rows="2" class="body"></textarea>
+              </div>
             </div>
           </div>
           <div id="users" class="browser users" style="display: none;">
@@ -110,7 +112,7 @@
     <%= yield %>
 
 
-  <link href="/stylesheets/icons.css" media="screen" rel="stylesheet" type="text/css" />
+  <!-- link href="/stylesheets/icons.css" media="screen" rel="stylesheet" type="text/css" /-->
   <link rel="stylesheet/less" href="/less/booka.less" type="text/css" />
   <%= javascript_include_tag 'libs/less-1.0.36.min.js' %>
   <link  href="//fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />

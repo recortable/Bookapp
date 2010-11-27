@@ -1,51 +1,68 @@
 (function() {
+  function loadDiscussions(project_id, clear, callback) {
+    $$.workspace.setProjectId(project_id);
+    var url = "/projects/" + project_id + "/discussions.json";
+    var options = {
+      project_id : project_id
+    };
+    $$.Cache2.collection(url, $$.Discussions, options, function(discussions) {
+      $$.discussions = discussions;
+      $$.Cache2.presenter(url + "Presenter", $$.DiscussionsPresenter, $$.discussions, function(presenter) {
+        $$.discussionsPresenter = presenter;
+        $$.layout.showInBrowser(presenter);
+        callback && callback();
+      });
+    });
+    clear && $$.layout.clear();
+  }
+
   $$.DiscussionsController = Backbone.Controller.extend({
     routes: {
-      "investigaciones/:project_id/debates" : "index",
-      "investigaciones/:project_id/debates/:discussion_id" : "show"
+      'investigaciones/:project_id/debates': 'index',
+      'investigaciones/:project_id/debates/crear' : 'new',
+      'investigaciones/:project_id/debates/:discussion_id': 'show',
+      'investigaciones/:project_id/debates/:discussion_id/editar': 'edit'
     },
-    index: function(project_id) {
-      log("controller#index", project_id);
+    index : function(project_id) {
+      log("controller#discussions", project_id);
       loadDiscussions(project_id, true);
     },
     show : function(project_id, discussion_id) {
-      log("discussions#show");
-      $$.workspace.setProjectId(project_id);
-
-      var cached = $$.Cache('discussion' + discussion_id, project_id, function() {
-        var discussion = new $$.Document({
-          url : "/projects/" + project_id + "/discussions/" + discussion_id + ".json"
+      if ($$.Util.isNumber(discussion_id)) {
+        log("discussions#show");
+        loadDiscussions(project_id, false, function() {
+          var url = "/projects/" + project_id + "/discussions/" + discussion_id + ".json";
+          $$.Cache2.refresh(url, $$.discussions, discussion_id, function (discussion) {
+            var token = url + "-DiscussionPresenter";
+            $$.Cache2.presenter(token, $$.DiscussionPresenter, discussion, function (presenter) {
+              presenter.show();
+            });
+          });
         });
-        var presenter = new $$.DiscussionDocumentPresenter({
-          model : discussion
+      }
+    },
+    'new' : function(project_id) {
+      loadDiscussions(project_id, false, function() {
+        log("discussions#new");
+        $$.editor = new $$.DiscussionEditor({
+          model :new $$.Discussion({
+            project_id : project_id
+          })
         });
-        discussion.fetch();
-        return [discussion, presenter];
+        $$.layout.show($$.editor);
       });
-      $$.document = cached[0];
-      $$.documentPresenter = cached[1];
-      $$.documentPresenter.show();
-      loadDiscussions(project_id, true);
+    },
+    edit : function(project_id, discussion_id) {
+      loadDiscussions(project_id, false, function() {
+        log("discussions#edit");
+        var url = "/projects/" + project_id + "/discussions/" + discussion_id + ".json";
+        $$.Cache2.refresh(url, $$.discussions, discussion_id, function (discussion) {
+          $$.editor = new $$.DiscussionEditor({
+            model : discussion
+          });
+          $$.layout.show($$.editor);
+        });
+      });
     }
   });
-  
-  function loadDiscussions(project_id, show) {
-    $$.workspace.setProjectId(project_id);
-
-    var cached = $$.Cache('discussions', project_id, function() {
-      var discussions = new $$.Discussions(null, {
-        project_id : project_id
-      });
-      var presenter = new $$.DiscussionsPresenter({
-        model : discussions
-      });
-      discussions.fetch();
-      return [discussions, presenter];
-    });
-    $$.discussions = cached[0];
-    $$.discussionsPresenter = cached[1];
-    if (show)
-      $$.layout.showInBrowser($$.discussionsPresenter.el);
-  }
-
 })();

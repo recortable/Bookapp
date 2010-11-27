@@ -1,15 +1,13 @@
 <script id="article" type="text/html">
-  <div id="article-{{id}}" class="article item">
-    <div class="item-actions"><a href="#" class="action-edit">Editar</a></div>
-    <p class="title">{{ title }}</p>
-    <p class="description"> {{ description }}</p>
-  </div>
+  <div class="item-actions"><a href="#" class="action-edit">Editar</a></div>
+  <p class="title">{{ title }}</p>
+  <p class="description"> {{ description }}</p>
 </script>
 
 <script id="articles_empty" type="text/html">
   <div class="article item disabled">
-    La investigación {{ title }} aún no tiene ningún artículo. Puedes añadir uno
-    pulsando en el botón de abajo.
+    <b>{{ title }}</b> aún no tiene ningún artículo. Puedes añadir uno
+    pulsando en el enlace de abajo.
   </div>
 </script>
 
@@ -19,7 +17,7 @@
       <h1>{{editor_title}}</h1>
     </div>
     <div class="main">
-      <form action="#new-project">
+      <form action="#new-article">
         <div class="inputs">
           <div class="input string required">
             <label class="string required" for="title">Título</label>

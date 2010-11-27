@@ -38,6 +38,7 @@
     },
     edit : function(project_id) {
       var url = "/projects/" + project_id + ".json";
+      $$.workspace.setProjectId(project_id);
       $$.Cache2.refresh(url, $$.projects, project_id, function (project) {
         $$.editor = new $$.ProjectEditor({
           model : project

@@ -2,17 +2,16 @@
 @import "variables";
 
 #page {
-    width: 96%; margin-left: 2%; min-height: 400px; font-family: 'Nobile', serif; .shadow;
+  width: 96%; margin-left: 2%; min-height: 400px; font-family: 'Nobile', serif; .shadow;
 }
 
-#page.doc {
-    border: 1px solid @grisoscuro;
-    background-color: white;
-    font-size: @font-small;
+#page.document {
+  border: 1px solid @grisoscuro;
+  background-color: white;
+  font-size: @font-small;
 }
 
 #page a {color: @azul;}
-
 
 #page .head {width: 90%; margin: 1em 0 3em 10%; }
 #page .head h1 {display: block; font-size: 200%; margin: 5px 0 0 0; width: 80%;}
@@ -21,19 +20,19 @@
 #page .head h3 a {color: black; font-size: @font-small; margin-bottom: 0;}
 
 #page div.floating_actions {
-    /*display: none; */
-    overflow: hidden;
-    float: right; padding: 3px 3px 5px 5px;
-    margin-right: 2px;
-    background-color: @azulclaro; .rounded; border: 1px solid @azul;
-    opacity: 0.5;
+  /*display: none; */
+  overflow: hidden;
+  float: right; padding: 3px 3px 5px 5px;
+  margin-right: 2px;
+  background-color: @azulclaro; .rounded; border: 1px solid @azul;
+  opacity: 0.5;
 }
 #page div.floating_actions:hover {opacity: 1;}
 #page .floating_actions a {display: block; opacity: 0.7; margin-right: 2px;}
 #nopage .floating_actions a:hover {opacity: 1;}
 /** DOCUMENT **/
-#page div.doc:hover {border-color: white;}
-#page div.doc:hover .floating_actions {display: block; }
+#page div.document:hover {border-color: white;}
+#page div.document:hover .floating_actions {display: block; }
 
 /** CLIPS **/
 .body { margin: 2px 0%;  }
@@ -41,8 +40,8 @@
 
 /** SLOTS **/
 #page .slot {
-    display: block; width: 60%; margin: 3px auto; overflow: hidden; padding: 0px 0px 1px 0px; height: 2px;
-    background-color: white; border: 1px solid white;
+  display: block; width: 60%; margin: 3px auto; overflow: hidden; padding: 0px 0px 1px 0px; height: 2px;
+  background-color: white; border: 1px solid white;
 }
 div#page:hover .slot {background-color: @azulclaro; border: 1px solid white;}
 div#page div.slot:hover {border-color: @azul;}
@@ -51,8 +50,11 @@ div#page div.slot.open {width: 90%; height: auto; padding: 1em; background-color
 .paragraph div.display .actions {}
 .paragraph div.display .actions {float: right; visibility:hidden; margin-right: 1em;}
 .paragraph div.display:hover .actions {visibility: visible;}
-.paragraph .editor {width: 90%; overflow: hidden; margin: 0 auto; padding: 1em; background-color: @grisclaro;}
-.editor textarea {width: 100%; height: 8em;}
+.paragraph .editor {
+  width: 90%; overflow: hidden; margin: 0 auto; padding: 3px 5px;
+  background-color: @grisclaro; border: 1px solid @gris;}
+.paragraph .editor textarea, .slot .editor textarea {width: 98%; margin: 0 auto; height: 8em;}
+.paragraph .editor h2 {padding-left: 3px; color: @grisoscuro;}
 #page .slot .actions a {color: black; cursor: pointer;}
 #page .slot .actions a:hover {color: white; text-decoration: none;}
 

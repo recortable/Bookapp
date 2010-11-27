@@ -30,7 +30,7 @@ class Project < ActiveRecord::Base
   def setup_project
     Project.transaction do
       collaborators.create!(:user => self.user, :roles => 'owner')
-      books.create!(:title => self.title)
+      books.create!(:user => self.user, :title => self.title)
     end
   end
 end

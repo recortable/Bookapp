@@ -5,9 +5,16 @@
   </div>
 </script>
 
+<script id="discussions_empty" type="text/html">
+  <div class="discussion item disabled">
+    <b>{{ title }}</b> aún no tiene ningún debate. Puedes añadir uno
+    pulsando en el enlace de abajo.
+  </div>
+</script>
+
 <script id="discussion_document" type="text/html">
   <div class="discussion document">
-    <div id="document_{{id}}" class="head">
+    <div class="head">
       <h1>{{title}}</h1>
     </div>
     <div class="decissions list"></div>

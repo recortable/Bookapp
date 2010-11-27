@@ -6,15 +6,15 @@
     },
     initialize: function() {
       _.bindAll(this, 'render');
+      this.el = $$.Render.div('article item');
       this.model.bind('change', this.render);
       this.model.view = this;
       this.render();
       $(this.el).click(this.clicked);
     },
     render: function() {
-      var older = this.el;
-      this.el = $$.render.article(this.model.toJSON());
-      older.replaceWith && older.replaceWith(this.el);
+      this.el.attr('id', "article-" + this.model.get('id'));
+      this.el.html($$.render.article(this.model.toJSON()));
       this.delegateEvents();
       return true;
     },
@@ -39,6 +39,7 @@
       this.model.bind('add',     this.addOne);
       this.model.bind('refresh', this.addAll);
       this.list = this.$(".list");
+      this.addAll(this.model);
     },
     addOne: function(article) {
       var view = new $$.ArticlePresenter({
@@ -90,10 +91,10 @@
         }
       };
 
-      if (this.model.get('id')) {
-        this.model.save(model, options);
-      } else {
+      if (this.model.isNew()) {
         $$.articles.create(new $$.Article(model), options);
+      } else {
+        this.model.save(model, options);
       }
       return false;
     }

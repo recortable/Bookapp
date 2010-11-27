@@ -1,7 +1,8 @@
 <script id="document" type="text/html">
-  <div id="page" class="doc">
+  <div id="page" class="document">
     <div id="document_{{id}}" class="head">
       <h1>{{title}}</h1>
+      <div class="description">{{description}}</div>
     </div>
     <div class="paragraphs"></div>
   </div>
@@ -27,11 +28,11 @@
 
 <script id="slot" type="text/html">
   <div class="slot">
-    <div class="clip_editor editor" style="display: none;">
-      <h1>Añadir un párrafo (repo: {{repository_id}} before: {{before_id}})</h1>
+    <div class="editor" style="display: none;">
+      <h2>Añadir un párrafo</h2>
       <form action="#">
         <div class="inputs">
-          <textarea class="body" cols="30" rows="50"></textarea>
+          <textarea class="body" cols="30" rows="6"></textarea>
         </div>
         <div class="actions">
           <input type="submit" value="Guardar" />
@@ -51,10 +52,10 @@
       <div id="paragraph-{{id}}" class="body">{{{body}}}</div>
     </div>
     <div class="paragraph-editor editor" style="display: none;">
-      <h1>Editar un párrafo (para: {{id}})</h1>
+      <h2>Editar párrafo</h2>
       <form>
         <div class="inputs">
-          <textarea class="editor-body" cols="30" rows="5"></textarea>
+          <textarea class="editor-body" cols="30" rows="6"></textarea>
         </div>
         <div class="actions">
           <input type="submit" value="Guardar" />
