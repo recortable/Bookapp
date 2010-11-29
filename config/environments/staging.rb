@@ -9,9 +9,6 @@ Bookapp::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
   cache_dir = File.join Rails.root, 'public', 'cache'
-  config.action_controller.page_cache_directory = cache_dir
-  puts "ROOT #{Rails.root} -> #{cache_dir}"
-  puts "CACHE #{cache_dir} -> #{config.action_controller.page_cache_directory}"
   
   # Specifies the header that your server uses for sending files
   config.action_dispatch.x_sendfile_header = "X-Sendfile"
