@@ -54,6 +54,11 @@
       if (project_id)
         $$.router.go('projects', project_id, 'discussions');
     },
+    openIndex : function() {
+      var project_id = this.model.get('project_id');
+      if (project_id)
+        $$.router.go('projects', project_id, 'books');
+    },
     openMessages : function() {
       $$.layout.showInComm($$.messagesPresenter.el);
     },

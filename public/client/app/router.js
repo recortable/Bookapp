@@ -5,6 +5,7 @@
     'projects' : 'investigaciones',
     'articles' : 'articulos',
     'discussions' : 'debates',
+    'books' : 'leer',
     'new' : 'crear',
     'edit' : 'editar'
   }

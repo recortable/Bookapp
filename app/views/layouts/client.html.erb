@@ -62,22 +62,22 @@
           <div id="location">
             <a id="plataformabooka" href="#">Plataformabooka.net > </a>
             <a id="current_project" href="#"></a>
+            <a id="current_repository" href="#"></a>
           </div>
+        </div>
+        <div id="booka-status">
+        </div>
+        <div id="content-viewport">
+          <div id="content">
+          </div>
+        </div>
+        <div id="user-status">
           <a href="#sesion" id="current_user" style="display: none;">
           </a>
           <div id="session_controls">
             ¿Quién eres?: <a href="#entrar" id="login">Entrar</a>
             ¿Nuevo aquí?: <a href="#alta" id="login">Darse de alta</a>
           </div>
-        </div>
-        <div id="booka-status"></div>
-        <div id="content-viewport">
-          <div id="content">
-          </div>
-        </div>
-        <div id="talk_controls">
-          <div id="online_users">Personas conectadas: 0</div>
-          <div id="unreaded_messages">Mensajes sin leer: 0</div>
         </div>
       </div>
       <div id="right">
@@ -89,7 +89,7 @@
           <div id="communicator" class="comm">
             <div class="list"></div>
             <div class="controls">
-              <label class="status">Conectando...</label>
+              <label class="status"></label>
               <div id="messages-input">
                 <textarea cols="6" rows="2" class="body"></textarea>
               </div>
@@ -112,7 +112,7 @@
     <%= yield %>
 
 
-  <!-- link href="/stylesheets/icons.css" media="screen" rel="stylesheet" type="text/css" /-->
+    <!-- link href="/stylesheets/icons.css" media="screen" rel="stylesheet" type="text/css" /-->
   <link rel="stylesheet/less" href="/less/booka.less" type="text/css" />
   <%= javascript_include_tag 'libs/less-1.0.36.min.js' %>
   <link  href="//fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />
