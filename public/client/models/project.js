@@ -1,5 +1,6 @@
 (function() {
   $$.Project = Backbone.Model.extend({
+    name : 'Project',
     http_params: 'project'
   });
 
@@ -10,11 +11,11 @@
     initialize : function() {
       var self = this;
       $$.workspace.bind('change:projects', function(workspace) {
-        console.log("REFRESH PROJECTS", workspace.get('projects'));
         var models = []
-        _.each(workspace.get('projects'), function(project) {
-          models.push(new $$.Project(project));
+        _.each(workspace.get('projects'), function(data) {
+          models.push(new $$.Project(data));
         });
+        console.log("PROJECTS CHANGED", models);
         self.refresh(models);
         $$.workspace.setProjectId($$.workspace.get('project_id'));
       });

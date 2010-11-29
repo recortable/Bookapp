@@ -1,7 +1,4 @@
 
-
-
-
 <script id="message" type="text/html">
   <div id="message-{{html_id}}" class="message item composed">
     <div class="info">
@@ -12,6 +9,25 @@
       {{body}}
     </div>
   </div>
+</script>
+
+<script id="repository_editor" type="text/html" class="partial">
+  <form action="#" class="repository-editor">
+    <div class="inputs">
+      <div class="input string required">
+        <label class="string required" for="title">Título</label>
+        <input class="string required" id="repository_title" maxlength="256" name="title" size="50" type="text" value="{{title}}" />
+      </div>
+      <div class="input text optional">
+        <label class="text optional" for="description">Descripción</label>
+        <textarea class="text optional" cols="40" id="repository_description" name="description" rows="20">{{description}}</textarea>
+      </div>
+    </div>
+    <div class="actions">
+      <input id="project_submit" name="commit" type="submit" value="{{editor_submit}}" />
+      <a href="#" class="cancel">Cancelar</a>
+    </div>
+  </form>
 </script>
 
 

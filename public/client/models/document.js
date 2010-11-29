@@ -1,7 +1,4 @@
 (function() {
-
-
-
   $$.Document = Backbone.Model.extend({
     initialize : function() {
       _.bindAll(this, 'setOperations');

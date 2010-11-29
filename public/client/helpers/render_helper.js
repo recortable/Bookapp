@@ -30,8 +30,9 @@
         // build the corresponding public retrieval function
         that[name] = function (data, blocks, raw) {
           blocks || (blocks = {});
-          if (spec.partials) blocks= _.extend({}, spec.partials, blocks);
+          if (spec.partials) blocks.partials = spec.partials;
           data = data || {};
+          console.log("RENDER", data, blocks);
           var result = spec.cache[name](data, blocks);
           return raw ? result : $(result);
         };

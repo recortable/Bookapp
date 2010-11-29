@@ -5,9 +5,9 @@
     var options = {
       project_id : project_id
     };
-    $$.Cache2.collection(url, $$.Discussions, options, function(discussions) {
+    $$.Cache.collection(url, $$.Discussions, options, function(discussions) {
       $$.discussions = discussions;
-      $$.Cache2.presenter(url + "Presenter", $$.DiscussionsPresenter, $$.discussions, function(presenter) {
+      $$.Cache.presenter(url + "Presenter", $$.DiscussionsPresenter, $$.discussions, function(presenter) {
         $$.discussionsPresenter = presenter;
         $$.layout.showInBrowser(presenter);
         callback && callback();
@@ -32,10 +32,10 @@
         log("discussions#show");
         loadDiscussions(project_id, false, function() {
           var url = "/projects/" + project_id + "/discussions/" + discussion_id + ".json";
-          $$.Cache2.refresh(url, $$.discussions, discussion_id, function (discussion) {
+          $$.Cache.refresh(url, $$.discussions, discussion_id, function (discussion) {
             var token = url + "-DiscussionPresenter";
-            $$.Cache2.presenter(token, $$.DiscussionPresenter, discussion, function (presenter) {
-              presenter.show();
+            $$.Cache.presenter(token, $$.DiscussionPresenter, discussion, function (presenter) {
+              $$.layout.show(presenter);
             });
           });
         });
@@ -56,7 +56,7 @@
       loadDiscussions(project_id, false, function() {
         log("discussions#edit");
         var url = "/projects/" + project_id + "/discussions/" + discussion_id + ".json";
-        $$.Cache2.refresh(url, $$.discussions, discussion_id, function (discussion) {
+        $$.Cache.refresh(url, $$.discussions, discussion_id, function (discussion) {
           $$.editor = new $$.DiscussionEditor({
             model : discussion
           });

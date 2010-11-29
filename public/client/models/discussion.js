@@ -1,6 +1,7 @@
 (function() {
   $$.Discussion = Backbone.Model.extend({
-   
+    name : 'Discussion',
+    http_params : 'discussion'
   });
 
   $$.Discussions = Backbone.Collection.extend({

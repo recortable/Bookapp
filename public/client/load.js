@@ -34,6 +34,7 @@
         new $$.DiscussionsController();
         new $$.ProjectsController();
         new $$.SessionController();
+        new $$.BooksController();
         Backbone.history.start();
         console.log("client ready.");
       }

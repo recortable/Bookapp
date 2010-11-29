@@ -96,6 +96,7 @@
       } else {
         this.model.save(model, options);
       }
+      $$.layout.clear();
       return false;
     }
   });

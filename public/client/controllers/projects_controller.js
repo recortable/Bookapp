@@ -18,9 +18,9 @@
         log("projects#show");
         $$.workspace.setProjectId(project_id);
         var url = "/projects/" + project_id + ".json";
-        $$.Cache2.refresh(url, $$.projects, project_id, function(project) {
+        $$.Cache.refresh(url, $$.projects, project_id, function(project) {
           var token = url + "-DocumentPresenter";
-          $$.Cache2.presenter(token, $$.DocumentPresenter, project, function(presenter) {
+          $$.Cache.presenter(token, $$.DocumentPresenter, project, function(presenter) {
             console.log("PRESENTER", presenter);
             $$.layout.show(presenter);
           });
@@ -30,20 +30,25 @@
     },
     newProject : function() {
       log("controller#newProject");
-      $$.editor = new $$.ProjectEditor({
-        model :new $$.Project()
+      $$.Can.create('Project', function() {
+        $$.editor = new $$.ProjectEditor({
+          model :new $$.Project()
+        });
+        $$.layout.show($$.editor);
+        $$.layout.showInBrowser($$.projectsPresenter);
       });
-      $$.layout.show($$.editor);
       $$.layout.showInBrowser($$.projectsPresenter);
     },
     edit : function(project_id) {
       var url = "/projects/" + project_id + ".json";
       $$.workspace.setProjectId(project_id);
-      $$.Cache2.refresh(url, $$.projects, project_id, function (project) {
-        $$.editor = new $$.ProjectEditor({
-          model : project
+      $$.Cache.refresh(url, $$.projects, project_id, function (project) {
+        $$.Can.edit(project, function() {
+          $$.editor = new $$.ProjectEditor({
+            model : project
+          });
+          $$.layout.show($$.editor);
         });
-        $$.layout.show($$.editor);
       });
       $$.layout.showInBrowser($$.projectsPresenter);
     }

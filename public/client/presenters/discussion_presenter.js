@@ -68,7 +68,48 @@
       }
     },
     newDiscussion : function() {
-      $$.router.go("discussions", "create");
+      $$.router.go_project("discussions", "new");
+      return false;
+    }
+  });
+
+  // DiscussionEditor
+  // -------------
+  $$.DiscussionEditor = Backbone.View.extend({
+    events : {
+      "click .cancel" : "cancel",
+      'submit form' : 'submit'
+    },
+    initialize : function() {
+      var isNew = this.model.isNew();
+      var data = this.model.toJSON();
+      var  project = $$.projects.get(this.model.get('project_id'));
+      data.editor_title = isNew ? 'Añadir un tema de debate a ' + project.get('title') : 'Editar tema de debate ' + this.model.get('title');
+      data.editor_submit = isNew ? 'Crear tema de debate' : 'Guardar tema de debate';
+      this.el = $$.render.discussionEditor(data);
+      this.delegateEvents();
+    },
+    cancel : function() {
+      $$.router.go_project('discussions');
+      return false;
+    },
+    submit : function() {
+      var model = {
+        title : this.$("#repository_title").val(),
+        description : this.$("#repository_description").val()
+      }
+      var options = {
+        success : function(data) {
+          $$.router.go_project('discussions', data.id);
+        }
+      };
+
+      if (this.model.isNew()) {
+        $$.discussions.create(new $$.Discussion(model), options);
+      } else {
+        this.model.save(model, options);
+      }
+      return false;
     }
   });
  

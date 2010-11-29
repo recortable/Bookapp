@@ -16,6 +16,7 @@
         type: 'GET',
         url : "/users/sign_out.json",
         success: function(data) {
+          console.log("SIGN OUT", data);
           $$.workspace.set(data);
           $$.router.go('');
         }
@@ -35,18 +36,25 @@
     },
     login : function() {
       var user = {
-        user_email : this.$('#user_email').val(),
-        user_password : this.$('#user_password').val(),
-        user_remember_me : this.$('#user_remember_me').val()
+        email : this.$('#user_email').val(),
+        password : this.$('#user_password').val()
+      //        remember_me : this.$('#user_remember_me').attr('checked', true)
       };
+      data = {
+        authenticity_token : $$.workspace.get('csrf'),
+        user : user
+      }
       $.ajax({
         type : 'POST',
         url :'/users/sign_in.json',
         dataType : 'json',
-        data : user,
+        data : data,
         success : function(data) {
+          var current_url = $$.router.current();
+          console.log("LOGIN", data, current_url);
           $$.workspace.set(data);
-          $$.router.go('');
+          //$$.flash("Hola " + $$.user.name() + ". Bienvenidx a Plataformabooka.net")
+          window.location.hash = window.location.hash;
         }
       });
       return false;

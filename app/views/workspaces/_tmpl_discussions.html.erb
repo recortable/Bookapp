@@ -1,7 +1,7 @@
 <script id="discussion" type="text/html">
   <div class="discussion item">
     <p class="title">{{ title }}</p>
-    <p class="description"> {{ description }}</p>
+    <p class="description">{{ description }}</p>
   </div>
 </script>
 
@@ -36,6 +36,17 @@
     </div>
     <div class="comment actions">
       <a class="new-comment">Añadir comentario</a>
+    </div>
+  </div>
+</script>
+
+<script id="discussionEditor" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>{{editor_title}}</h1>
+    </div>
+    <div class="main">
+      {{> repository_editor}}
     </div>
   </div>
 </script>

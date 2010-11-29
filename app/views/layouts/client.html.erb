@@ -21,6 +21,9 @@
       -webkit-box-shadow: -3px 3px 5px #888;
       z-index: 5000;
     }
+
+    #content-loading {width: 70%; text-align: center; margin: 3em auto; background-color: white;
+      border-radius: 3px; -webkit-box-shadow: -3px 3px 5px #888; font-size: 80%; padding: 0.5em 0;}
   </style>
   <body>
     <div id="working">Trabajando...</div>
@@ -54,7 +57,13 @@
               <a class="action-new iconic iconic-plus_alt_16x16" title="Añadir tema de debate">Añadir tema de debate</a>
             </div>
           </div>
-
+          <div class="browser books" style="display: none;">
+            <h1>Índice</h1>
+            <div class="list"></div>
+            <div class="actions">
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Añadir un elemento al índice">Añadir un elemento al índice</a>
+            </div>
+          </div>
         </div>
       </div>
       <div id="center">
@@ -69,6 +78,7 @@
         </div>
         <div id="content-viewport">
           <div id="content">
+            <div id="content-loading">Cargando datos...</div>
           </div>
         </div>
         <div id="user-status">

@@ -1,5 +1,6 @@
 (function() {
   $$.Article = Backbone.Model.extend({
+    name : 'Article',
     http_params: 'article'
   });
 

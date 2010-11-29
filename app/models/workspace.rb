@@ -9,6 +9,7 @@ class Workspace
     if current_user
       @user_id = current_user.id
       @user_name = current_user.name
+      @user_roles = current_user.roles
       @projects = current_user.projects
       @collaborators = []
       @projects.each do |project|

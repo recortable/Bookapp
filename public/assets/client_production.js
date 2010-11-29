@@ -808,7 +808,7 @@ exports['compileToString'] = Handlebars.compileToString;
 })();
 (function() {
   var cache = {};
-  $$.Cache2 = function(token, fail, success) {
+  $$.Cache = function(token, fail, success) {
     var object = cache[token];
     if (object == null) {
       object = fail(token);
@@ -818,8 +818,8 @@ exports['compileToString'] = Handlebars.compileToString;
     }
   }
 
-  $$.Cache2.refresh = function(url, collection, id, callback) {
-    $$.Cache2(url, function(url) {
+  $$.Cache.refresh = function(url, collection, id, callback) {
+    $$.Cache(url, function(url) {
       var model = collection.get(id);
       assert(model, "Cache refrehs: can't find the model", id, url, collection);
       model.url = url;
@@ -832,8 +832,8 @@ exports['compileToString'] = Handlebars.compileToString;
     });
   }
 
-  $$.Cache2.model = function(url, modelClass, callback) {
-    $$.Cache2(url, function(url) {
+  $$.Cache.model = function(url, modelClass, callback) {
+    $$.Cache(url, function(url) {
       var model = new modelClass();
       model.url = url;
       model.fetch({
@@ -845,8 +845,8 @@ exports['compileToString'] = Handlebars.compileToString;
     });
   };
 
-  $$.Cache2.collection = function(url, collectionClass, options, callback) {
-    $$.Cache2(url, function() {
+  $$.Cache.collection = function(url, collectionClass, options, callback) {
+    $$.Cache(url, function() {
       var articles = new collectionClass(null, options);
       articles.fetch({
         success : callback
@@ -857,8 +857,8 @@ exports['compileToString'] = Handlebars.compileToString;
     });
   }
 
-  $$.Cache2.presenter = function(token, presenterClass, model, callback) {
-    $$.Cache2(token, function() {
+  $$.Cache.presenter = function(token, presenterClass, model, callback) {
+    $$.Cache(token, function() {
       var presenter = new presenterClass({model : model});
       callback(presenter);
       return presenter;
@@ -2157,9 +2157,9 @@ exports['compileToString'] = Handlebars.compileToString;
     var options = {
       project_id : project_id
     };
-    $$.Cache2.collection(url, $$.Articles, options, function(articles) {
+    $$.Cache.collection(url, $$.Articles, options, function(articles) {
       $$.articles = articles;
-      $$.Cache2.presenter(url + "Presenter", $$.ArticlesPresenter, $$.articles, function(presenter) {
+      $$.Cache.presenter(url + "Presenter", $$.ArticlesPresenter, $$.articles, function(presenter) {
         $$.articlesPresenter = presenter;
         $$.layout.showInBrowser(presenter);
         callback && callback();
@@ -2184,9 +2184,9 @@ exports['compileToString'] = Handlebars.compileToString;
         log("articles#show");
         loadArticles(project_id, false, function() {
           var url = "/projects/" + project_id + "/articles/" + article_id + ".json";
-          $$.Cache2.refresh(url, $$.articles, article_id, function (article) {
+          $$.Cache.refresh(url, $$.articles, article_id, function (article) {
             var token = url + "-DocumentPresenter";
-            $$.Cache2.presenter(token, $$.DocumentPresenter, article, function (presenter) {
+            $$.Cache.presenter(token, $$.DocumentPresenter, article, function (presenter) {
               presenter.show();
             });
           });
@@ -2208,7 +2208,7 @@ exports['compileToString'] = Handlebars.compileToString;
       loadArticles(project_id, false, function() {
         log("articles#edit");
         var url = "/projects/" + project_id + "/articles/" + article_id + ".json";
-        $$.Cache2.refresh(url, $$.articles, article_id, function (article) {
+        $$.Cache.refresh(url, $$.articles, article_id, function (article) {
           $$.editor = new $$.ArticleEditor({
             model : article
           });
@@ -2227,9 +2227,9 @@ exports['compileToString'] = Handlebars.compileToString;
     var options = {
       project_id : project_id
     };
-    $$.Cache2.collection(url, $$.Discussions, options, function(discussions) {
+    $$.Cache.collection(url, $$.Discussions, options, function(discussions) {
       $$.discussions = discussions;
-      $$.Cache2.presenter(url + "Presenter", $$.DiscussionsPresenter, $$.discussions, function(presenter) {
+      $$.Cache.presenter(url + "Presenter", $$.DiscussionsPresenter, $$.discussions, function(presenter) {
         $$.discussionsPresenter = presenter;
         $$.layout.showInBrowser(presenter);
         callback && callback();
@@ -2254,9 +2254,9 @@ exports['compileToString'] = Handlebars.compileToString;
         log("discussions#show");
         loadDiscussions(project_id, false, function() {
           var url = "/projects/" + project_id + "/discussions/" + discussion_id + ".json";
-          $$.Cache2.refresh(url, $$.discussions, discussion_id, function (discussion) {
+          $$.Cache.refresh(url, $$.discussions, discussion_id, function (discussion) {
             var token = url + "-DiscussionPresenter";
-            $$.Cache2.presenter(token, $$.DiscussionPresenter, discussion, function (presenter) {
+            $$.Cache.presenter(token, $$.DiscussionPresenter, discussion, function (presenter) {
               presenter.show();
             });
           });
@@ -2278,7 +2278,7 @@ exports['compileToString'] = Handlebars.compileToString;
       loadDiscussions(project_id, false, function() {
         log("discussions#edit");
         var url = "/projects/" + project_id + "/discussions/" + discussion_id + ".json";
-        $$.Cache2.refresh(url, $$.discussions, discussion_id, function (discussion) {
+        $$.Cache.refresh(url, $$.discussions, discussion_id, function (discussion) {
           $$.editor = new $$.DiscussionEditor({
             model : discussion
           });
@@ -2308,9 +2308,9 @@ exports['compileToString'] = Handlebars.compileToString;
         log("projects#show");
         $$.workspace.setProjectId(project_id);
         var url = "/projects/" + project_id + ".json";
-        $$.Cache2.refresh(url, $$.projects, project_id, function(project) {
+        $$.Cache.refresh(url, $$.projects, project_id, function(project) {
           var token = url + "-DocumentPresenter";
-          $$.Cache2.presenter(token, $$.DocumentPresenter, project, function(presenter) {
+          $$.Cache.presenter(token, $$.DocumentPresenter, project, function(presenter) {
             console.log("PRESENTER", presenter);
             $$.layout.show(presenter);
           });
@@ -2329,7 +2329,7 @@ exports['compileToString'] = Handlebars.compileToString;
     edit : function(project_id) {
       var url = "/projects/" + project_id + ".json";
       $$.workspace.setProjectId(project_id);
-      $$.Cache2.refresh(url, $$.projects, project_id, function (project) {
+      $$.Cache.refresh(url, $$.projects, project_id, function (project) {
         $$.editor = new $$.ProjectEditor({
           model : project
         });
