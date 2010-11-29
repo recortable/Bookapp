@@ -1,11 +1,27 @@
+compress_assets: off
 
 javascripts:
-  client:
+  client_production:
+    - public/javascripts/libs/jquery-1.4.4.min.js
+    - public/javascripts/libs/underscore-min.js
+    - public/javascripts/libs/backbone-min.js
+    - public/javascripts/libs/handlebars.js
+    - public/client/boot.js
+    - public/client/production.js
+    - public/client/app/*.js
+    - public/client/helpers/*.js
+    - public/client/models/*.js
+    - public/client/presenters/*.js
+    - public/client/controllers/*.js
+    - public/client/load.js
+  client_development:
     - public/javascripts/libs/jquery-1.4.4.min.js
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
     - public/javascripts/libs/handlebars.js
+    - public/clinet/asset.js
     - public/client/boot.js
+    - public/client/development.js
     - public/client/app/*.js
     - public/client/helpers/*.js
     - public/client/models/*.js

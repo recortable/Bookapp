@@ -79,4 +79,4 @@
 
 
 
-})(window.jQuery);
+})(jQuery);

@@ -22,4 +22,4 @@
   $$.loading.error = function(message) {
     $("#workin").html(message).show();
   }
-})(window.jQuery);
+})(jQuery);

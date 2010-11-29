@@ -117,7 +117,12 @@
   <%= javascript_include_tag 'libs/less-1.0.36.min.js' %>
   <link  href="//fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />
   <!--script type="text/javascript" src="http://beaconpush.com/1/client.js"></script -->
-  <%= include_javascripts :client %>
+  <% if Rails.env == 'development'  %>
+    <%= include_javascripts :client_development %>
+  <% else %>
+    <!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script -->
+    <%= include_javascripts :client_production %>
+  <% end %>
 
   <%= render 'tmpl' %>
   <%= render 'tmpl_documents' %>

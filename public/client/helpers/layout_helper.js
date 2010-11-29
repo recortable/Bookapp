@@ -15,4 +15,4 @@
       $("#content").empty();
     }
   }
-})(window.jQuery);
+})(jQuery);

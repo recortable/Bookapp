@@ -5,7 +5,7 @@ development:
   password: db4root
   database: bookapp
 
-stagging:
+staging:
   adapter: mysql
   encoding: utf8
   username: root

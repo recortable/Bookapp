@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookapp</title>
+  </head>
+  <link href="/stylesheets/reset-min.css" media="screen" rel="stylesheet" type="text/css" />
+  <style type="text/css">
+    html {
+      font-size: 90%;
+      font-family: 'Nobile', sans;
+      background-color: #C6C8CA;
+    }
+    #working {
+      padding: 1px 5px;
+      position: absolute;
+      right: 0; top: 0;
+      font-size: 80%;
+      background-color: #FEFF8F;
+      color: #00AEEF;
+      border-radius: 0 0 0px 3px;
+      -webkit-box-shadow: -3px 3px 5px #888;
+      z-index: 5000;
+    }
+  </style>
+  <body>
+    <div id="working">Trabajando...</div>
+    <div id="workspace" style="display: none;">
+      <div id="left">
+        <ul id="site_navigation">
+          <li class="sprite-nav sprite-nav-entranceicon active" id="navigate-to-projects">Investigaciones</li>
+          <li style="display: none" class="sprite-nav sprite-nav-archivesicon" id="navigate-to-documents">Artículos</li>
+          <li style="display: none" class="sprite-nav sprite-nav-editionicon navigation-disabled" id="navigate-to-discussions">Discusiones</li>
+          <li style="display: none" class="sprite-nav sprite-nav-bookaicon navigation-disabled" id="navigate-to-index">Indice</li>
+        </ul>
+        <div id="browser-viewport">
+          <div class="browser projects" style="display: none;">
+            <h1>Investigaciones</h1>
+            <div class="list"></div>
+            <div class="actions">
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Añadir una investigación">Añadir investigación</a>
+            </div>
+          </div>
+          <div class="browser articles" style="display: none;">
+            <h1>Artículos</h1>
+            <div class="list"></div>
+            <div class="actions">
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Crear un nuevo artículo">Crear artículo</a>
+            </div>
+          </div>
+          <div class="browser discussions" style="display: none;">
+            <h1>Temas de debate</h1>
+            <div class="list"></div>
+            <div class="actions">
+              <a class="action-new iconic iconic-plus_alt_16x16" title="Añadir tema de debate">Añadir tema de debate</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div id="center">
+        <div id="user_controls">
+          <div id="location">
+            <a id="plataformabooka" href="#">Plataformabooka.net > </a>
+            <a id="current_project" href="#"></a>
+            <a id="current_repository" href="#"></a>
+          </div>
+        </div>
+        <div id="booka-status">
+        </div>
+        <div id="content-viewport">
+          <div id="content">
+          </div>
+        </div>
+        <div id="user-status">
+          <a href="#sesion" id="current_user" style="display: none;">
+          </a>
+          <div id="session_controls">
+            ¿Quién eres?: <a href="#entrar" id="login">Entrar</a>
+            ¿Nuevo aquí?: <a href="#alta" id="login">Darse de alta</a>
+          </div>
+        </div>
+      </div>
+      <div id="right">
+        <ul id="user_navigation">
+          <li style="display:none;" class="sprite-nav sprite-nav-loginicon" id="navigate-to-users">Colaboradorxs</li>
+          <li class="sprite-nav sprite-nav-contacticon" id="navigate-to-activities">Actividad</li>
+        </ul>
+        <div id="comm-viewport">
+          <div id="communicator" class="comm">
+            <div class="list"></div>
+            <div class="controls">
+              <label class="status"></label>
+              <div id="messages-input">
+                <textarea cols="6" rows="2" class="body"></textarea>
+              </div>
+            </div>
+          </div>
+          <div id="users" class="browser users" style="display: none;">
+            <h1>Tus colaboradorxs</h1>
+            <div class="info">
+
+            </div>
+            <div class="list"></div>
+            <div class="controls">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+
+
+
+    <!-- link href="/stylesheets/icons.css" media="screen" rel="stylesheet" type="text/css" /-->
+  <link rel="stylesheet/less" href="/less/booka.less" type="text/css" />
+  <script src="/javascripts/libs/less-1.0.36.min.js?1290442934" type="text/javascript"></script>
+  <link  href="//fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />
+  <!--script type="text/javascript" src="http://beaconpush.com/1/client.js"></script -->
+    <!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script -->
+    <script src="/assets/client_production.js" type="text/javascript"></script>
+
+  
+
+
+
+<script id="message" type="text/html">
+  <div id="message-{{html_id}}" class="message item composed">
+    <div class="info">
+      <div class="user_name">{{ user_name }}</div>
+      <div class="created_at">{{#fecha}}{{ created_at }}{{/fecha}}</div>
+    </div>
+    <div class="body">
+      {{body}}
+    </div>
+  </div>
+</script>
+
+
+
+  <script id="document" type="text/html">
+  <div id="page" class="document">
+    <div id="document_{{id}}" class="head">
+      <h1>{{title}}</h1>
+      <div class="description">{{description}}</div>
+    </div>
+    <div class="paragraphs"></div>
+  </div>
+  <div id="comments" class="comments">
+    <div class="head">
+      <h1>Comentarios a '{{title}}'</h1>
+    </div>
+    <div class="comments-list"></div>
+    <div class="comment editor" style="display: none;">
+      <form action="#">
+        <textarea cols="5" rows="5"></textarea>
+        <div class="actions">
+          <input type="submit" value="Comentar" />
+          <a class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+    <div class="comment actions">
+      <a class="new-comment">Añadir comentario</a>
+    </div>
+  </div>
+</script>
+
+<script id="slot" type="text/html">
+  <div class="slot">
+    <div class="editor" style="display: none;">
+      <h2>Añadir un párrafo</h2>
+      <form action="#">
+        <div class="inputs">
+          <textarea class="body" cols="30" rows="6"></textarea>
+        </div>
+        <div class="actions">
+          <input type="submit" value="Guardar" />
+          <a class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+
+<script id="paragraph" type="text/html">
+  <div id="paragraph-presenter-{{id}}" class="paragraph">
+    <div class="display">
+      <div class="actions">
+        <a class="action-edit iconic iconic-plus_alt_16x16">Editar</a>
+      </div>
+      <div id="paragraph-{{id}}" class="body">{{{body}}}</div>
+    </div>
+    <div class="paragraph-editor editor" style="display: none;">
+      <h2>Editar párrafo</h2>
+      <form>
+        <div class="inputs">
+          <textarea class="editor-body" cols="30" rows="6"></textarea>
+        </div>
+        <div class="actions">
+          <input type="submit" value="Guardar" />
+          <a class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+
+<script id="comment" type="text/html">
+  <div id="comment-{{html_id}}" class="comment item composed">
+    <div class="info">
+      <div class="user_name">{{ user_name }}</div>
+      <div class="created_at">{{#fecha}}{{ created_at }}{{/fecha}}</div>
+    </div>
+    <div class="body">
+      {{body}}
+    </div>
+  </div>
+</script>
+  <script id="project" type="text/html">
+    <div class="item-actions"><a href="#" class="action-edit">Editar</a></div>
+    <p class="title">{{ title }}</p>
+    <p class="description"> {{ description }}</p>
+    <p class="property stage">Fase: {{stage}}</p>
+    <p class="property visible">{{#public}}Visible a todo el mundo{{/public}}</p>
+    <p class="property collaborators">?? personas colaborando</p>
+</script>
+
+<script id="projectEditor" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>{{editor_title}}</h1>
+    </div>
+    <div class="main">
+      <form action="#new-project">
+        <div class="inputs">
+          <div class="input string required">
+            <label class="string required" for="project_title">Título</label>
+            <input class="string required" id="project_title" maxlength="256" name="project[title]" size="50" type="text" value="{{title}}" />
+          </div>
+          <div class="input text optional">
+            <label class="text optional" for="project_description">Descripción</label>
+            <textarea class="text optional" cols="40" id="project_description" name="project[description]" rows="20">{{description}}</textarea>
+          </div>
+          <div class="input select optional">
+            <label class="select optional" for="project_stage">Fase de la investigación</label>
+            <select class="select optional" id="project_stage" name="project[stage]">
+              <option value="calls">Presentación de convocatoria</option>
+              <option value="archives">Presentación de propuestas</option>
+              <option value="discuss">Edición / toma de decisiones</option>
+              <option value="comment">Lectura y ampliación</option>
+            </select>
+          </div>
+        </div>
+        <div class="input boolean optional">
+          <input checked="checked" class="boolean optional" id="project_public" name="project[public]" type="checkbox" value="{{public}}" />
+          <label class="boolean optional" for="project_public">Visible por personas no colaboradoras</label>
+        </div>
+        <div class="actions">
+          <input id="project_submit" name="commit" type="submit" value="{{editor_submit}}" />
+          <a href="#" class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+  <script id="article" type="text/html">
+  <div class="item-actions"><a href="#" class="action-edit">Editar</a></div>
+  <p class="title">{{ title }}</p>
+  <p class="description"> {{ description }}</p>
+</script>
+
+<script id="articles_empty" type="text/html">
+  <div class="article item disabled">
+    <b>{{ title }}</b> aún no tiene ningún artículo. Puedes añadir uno
+    pulsando en el enlace de abajo.
+  </div>
+</script>
+
+<script id="articleEditor" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>{{editor_title}}</h1>
+    </div>
+    <div class="main">
+      <form action="#new-article">
+        <div class="inputs">
+          <div class="input string required">
+            <label class="string required" for="title">Título</label>
+            <input class="string required" id="repository_title" maxlength="256" name="title" size="50" type="text" value="{{title}}" />
+          </div>
+          <div class="input text optional">
+            <label class="text optional" for="description">Descripción</label>
+            <textarea class="text optional" cols="40" id="repository_description" name="description" rows="20">{{description}}</textarea>
+          </div>
+        </div>
+        <div class="actions">
+          <input id="project_submit" name="commit" type="submit" value="{{editor_submit}}" />
+          <a href="#" class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+  <script id="discussion" type="text/html">
+  <div class="discussion item">
+    <p class="title">{{ title }}</p>
+    <p class="description"> {{ description }}</p>
+  </div>
+</script>
+
+<script id="discussions_empty" type="text/html">
+  <div class="discussion item disabled">
+    <b>{{ title }}</b> aún no tiene ningún debate. Puedes añadir uno
+    pulsando en el enlace de abajo.
+  </div>
+</script>
+
+<script id="discussion_document" type="text/html">
+  <div class="discussion document">
+    <div class="head">
+      <h1>{{title}}</h1>
+    </div>
+    <div class="decissions list"></div>
+    <div class="actions list"></div>
+  </div>
+  <div class="discussion comments">
+    <div class="head">
+      <h1>Debate sobre '{{title}}'</h1>
+    </div>
+    <div class="comments-list"></div>
+    <div class="comment editor" style="display: none;">
+      <form action="#">
+        <textarea cols="5" rows="5"></textarea>
+        <div class="actions">
+          <input type="submit" value="Comentar" />
+          <a class="cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+    <div class="comment actions">
+      <a class="new-comment">Añadir comentario</a>
+    </div>
+  </div>
+</script>
+  <script id="current_session" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>Sesión de usuario</h1>
+    </div>
+    <div class="main">
+      <form action="#new-project">
+        <div class="inputs">
+          Eres {{ user_name }}
+        </div>
+        <div class="actions">
+          <input id="project_submit" name="commit" type="submit" value="Cerrar sesión" />
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+
+<script id="login" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>Entrar a plataformabooka.net</h1>
+    </div>
+    <div class="main">
+      <form>
+        <div class="inputs">
+          <div class="input text required">
+            <label for="user_email">Tu correo electrónico:</label>
+            <input id="user_email" name="user[email]" size="30" type="text" value="" />
+          </div>
+          <div class="input password required">
+            <label for="user_password">Contraseña:</label>
+            <input id="user_password" name="user[password]" size="30" type="password" />
+          </div>
+          <div class="input boolean optional">
+            <input id="user_remember_me" name="user[remember_me]" type="checkbox"  />
+            <label for="user_remember_me">Recuérdame en este ordenador</label>
+          </div>
+        </div>
+        <div class="actions">
+          <input id="project_submit" name="commit" type="submit" value="Entrar" />
+          <a href="#">Cancelar</a>
+        </div>
+        <div class="info">
+          ¿Nueva/o aquí?: <a href="#alta">Darse de alta</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+
+<script id="sign_up" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>Darse de alta</h1>
+    </div>
+    <div class="main">
+      <div class="intro">En este momento sólo puedes entrar por invitación. Si no tienes usuario, pídeselo a Dani.</div>
+      <div class="actions">
+        <a href="#">Volver</a>
+      </div>
+      <div class="info">
+        ¿Ya tienes usuario?: <a href="#entrar">Entrar</a>
+      </div>
+    </div>
+  </div>
+</script>
+
+
+
+<script id="real_sign_up" type="text/html">
+  <div class="editor">
+    <div class="header">
+      <h1>Darse de alta</h1>
+    </div>
+    <div class="main">
+      <div class="intro">Darse de alta en plataformabooka.net te permite participar colaborativamente en las distintas investigaciones en curso.
+        Eres más que bienvenida/o!</div>
+      <form action="#new-project">
+        <div class="inputs">
+          <div class="input text required">
+            <label for="user_email">Tu correo electrónico:</label>
+            <input id="user_email" name="user[email]" size="30" type="text" value="" />
+          </div>
+          <div class="input password required">
+            <label for="user_password">Contraseña:</label>
+            <input id="user_password" name="user[password]" size="30" type="password" />
+          </div>
+          <div class="input password required">
+            <label for="user_password">Repite la contraseña:</label>
+            <input id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" />
+          </div>
+        </div>
+        <div class="actions">
+          <input id="project_submit" name="commit" type="submit" value="Darse de alta" />
+          <a href="#">Volver</a>
+        </div>
+        <div class="info">
+          ¿Ya tienes usuario?: <a href="#entrar">Entrar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>
+  
+  <script id="indice" type="text/html">
+  <div class="indice item">
+    <p class="title">{{ title }}</p>
+    <p class="description"> {{ description }}</p>
+  </div>
+</script>
+</body>
+</html>

@@ -42,4 +42,4 @@
       _.each(this.operations.models, this.executeOperation);
     }
   });
-})(window.jQuery);
+})(jQuery);

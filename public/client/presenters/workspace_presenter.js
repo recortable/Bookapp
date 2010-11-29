@@ -68,4 +68,4 @@
   });
 
 
-})(window.jQuery);
+})(jQuery);

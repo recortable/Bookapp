@@ -26,7 +26,7 @@ var jQuery = function( selector, context ) {
 	},
 
 	// Map over jQuery in case of overwrite
-	_jQuery = window.jQuery,
+	_jQuery = jQuery,
 
 	// Map over the $ in case of overwrite
 	_$ = window.$,
@@ -398,7 +398,7 @@ jQuery.extend({
 		window.$ = _$;
 
 		if ( deep ) {
-			window.jQuery = _jQuery;
+			jQuery = _jQuery;
 		}
 
 		return jQuery;
@@ -905,7 +905,7 @@ function doScrollCheck() {
 }
 
 // Expose jQuery to the global object
-return (window.jQuery = window.$ = jQuery);
+return (jQuery = window.$ = jQuery);
 
 })();
 

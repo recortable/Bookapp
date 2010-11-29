@@ -43,4 +43,4 @@
     model : $$.workspace
   });
 }
-})(window.jQuery);
+})(jQuery);
