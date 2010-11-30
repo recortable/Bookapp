@@ -5,9 +5,9 @@
     var options = {
       project_id : project_id
     };
-    $$.Cache.collection(url, $$.Books, options, function(books) {
+    $$.cache.collection(url, $$.Books, options, function(books) {
       $$.books = books;
-      $$.Cache.presenter(url + "Presenter", $$.BooksPresenter, $$.books, function(presenter) {
+      $$.cache.presenter(url + "Presenter", $$.BooksPresenter, $$.books, function(presenter) {
         $$.booksPresenter = presenter;
         $$.layout.showInBrowser(presenter);
         callback && callback();
@@ -32,9 +32,9 @@
         log("books#show");
         loadBooks(project_id, false, function() {
           var url = "/projects/" + project_id + "/books/" + book_id + ".json";
-          $$.Cache.refresh(url, $$.books, book_id, function (book) {
+          $$.cache.refresh(url, $$.books, book_id, function (book) {
             var token = url + "-DocumentPresenter";
-            $$.Cache.presenter(token, $$.DocumentPresenter, book, function (presenter) {
+            $$.cache.presenter(token, $$.DocumentPresenter, book, function (presenter) {
               presenter.show();
             });
           });
@@ -56,7 +56,7 @@
       loadBooks(project_id, false, function() {
         log("books#edit");
         var url = "/projects/" + project_id + "/books/" + book_id + ".json";
-        $$.Cache.refresh(url, $$.books, book_id, function (book) {
+        $$.cache.refresh(url, $$.books, book_id, function (book) {
           $$.editor = new $$.BookEditor({
             model : book
           });

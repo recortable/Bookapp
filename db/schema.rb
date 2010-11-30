@@ -35,11 +35,13 @@ ActiveRecord::Schema.define(:version => 20101123125203) do
   end
 
   create_table "operations", :force => true do |t|
-    t.integer  "repository_id"
-    t.string   "repository_type", :limit => 32
-    t.string   "model",           :limit => 32
-    t.string   "action",          :limit => 32
-    t.string   "params",          :limit => 256
+    t.integer  "project_id",                      :null => false
+    t.integer  "repository_id",                   :null => false
+    t.string   "repository_type",  :limit => 32,  :null => false
+    t.string   "repository_class", :limit => 32,  :null => false
+    t.string   "model",            :limit => 32
+    t.string   "action",           :limit => 32
+    t.string   "params",           :limit => 256
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"

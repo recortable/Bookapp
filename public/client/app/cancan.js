@@ -11,9 +11,9 @@
     }
   };
 
-  $$.Can = {
+  $$.can = {
     setUser : function(user) {
-      $$.Can.current_user = user;
+      $$.can.current_user = user;
     },
     create : function(modelName, success) {
       authorize(modelName, 'create', success);

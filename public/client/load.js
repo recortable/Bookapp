@@ -12,6 +12,7 @@
 
     $("#workspace").show();
 
+    $$.realtime.connect();
     $$.workspace = new $$.Workspace();
 
     $$.messages = new $$.Messages();
@@ -40,8 +41,8 @@
       }
     });
 
-  $$.workspacePresenter = new $$.WorkspacePresenter({
-    model : $$.workspace
-  });
-}
+    $$.workspacePresenter = new $$.WorkspacePresenter({
+      model : $$.workspace
+    });
+  }
 })(jQuery);

@@ -1,14 +1,19 @@
 class OperationsController < InheritedResources::Base
   respond_to :html, :xml, :json
-  #before_filter :authenticate_user!
+  # #before_filter :authenticate_user!
+
+ 
 
   def new
     @operation = Operation.new
     new!
   end
 
+
+
   def create
     create! { (@project == @repository) ? [@project, :operations] : [@project, @repository, :operations] }
+    Realtime.trigger :create, :operation, @operation, current_user
   end
 
   def update
@@ -31,6 +36,11 @@ class OperationsController < InheritedResources::Base
     else
       @repository = @project;
     end
+
+    params[:operation][:repository_id] = @repository.id
+    params[:operation][:repository_class] = @repository.class.to_s
+    params[:operation][:project_id] = @project.id
+
     @repository
   end
  

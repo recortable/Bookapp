@@ -14,9 +14,11 @@ class ArticlesController < InheritedResources::Base
 
   def update
     update! { project_articles_path(@project)}
+    Realtime.trigger :update, :article, @article, current_user
   end
 
   def create
     create! { project_articles_path(@project)}
+    Realtime.trigger :create, :article, @article, current_user
   end
 end

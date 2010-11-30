@@ -5,9 +5,9 @@
     var options = {
       project_id : project_id
     };
-    $$.Cache.collection(url, $$.Articles, options, function(articles) {
+    $$.cache.collection(url, $$.Articles, options, function(articles) {
       $$.articles = articles;
-      $$.Cache.presenter(url + "Presenter", $$.ArticlesPresenter, $$.articles, function(presenter) {
+      $$.cache.presenter(url + "Presenter", $$.ArticlesPresenter, $$.articles, function(presenter) {
         $$.articlesPresenter = presenter;
         $$.layout.showInBrowser(presenter);
         callback && callback();
@@ -32,9 +32,9 @@
         log("articles#show");
         loadArticles(project_id, false, function() {
           var url = "/projects/" + project_id + "/articles/" + article_id + ".json";
-          $$.Cache.refresh(url, $$.articles, article_id, function (article) {
+          $$.cache.refresh(url, $$.articles, article_id, function (article) {
             var token = url + "-DocumentPresenter";
-            $$.Cache.presenter(token, $$.DocumentPresenter, article, function (presenter) {
+            $$.cache.presenter(token, $$.DocumentPresenter, article, function (presenter) {
               $$.layout.show(presenter);
             });
           });
@@ -56,7 +56,7 @@
       loadArticles(project_id, false, function() {
         log("articles#edit");
         var url = "/projects/" + project_id + "/articles/" + article_id + ".json";
-        $$.Cache.refresh(url, $$.articles, article_id, function (article) {
+        $$.cache.refresh(url, $$.articles, article_id, function (article) {
           $$.editor = new $$.ArticleEditor({
             model : article
           });

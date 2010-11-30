@@ -54,7 +54,8 @@
           console.log("LOGIN", data, current_url);
           $$.workspace.set(data);
           //$$.flash("Hola " + $$.user.name() + ". Bienvenidx a Plataformabooka.net")
-          window.location.hash = window.location.hash;
+          //window.location.hash = window.location.hash;
+          $$.router.go('');
         }
       });
       return false;

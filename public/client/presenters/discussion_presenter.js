@@ -19,6 +19,24 @@
           params : params
         });
       }
+    },
+    Decission : {
+      create : function(operation, presenter) {
+        var para = new $$.ParagraphPresenter({
+          model : operation,
+          operations : presenter.operations
+        });
+        presenter.decissions.append(para.el);
+      }
+    },
+    Reaction : {
+      create : function(operation, presenter) {
+        var para = new $$.ParagraphPresenter({
+          model : operation,
+          operations : presenter.operations
+        });
+        presenter.reactions.append(para.el);
+      }
     }
   }
 

@@ -2,12 +2,16 @@
   $$.Operation = Backbone.Model.extend({
     http_params: 'operation',
     initialize : function() {
-      this.bind('change:params', function(model) {
-        var params = model.get('params');
-        if (_.isString(params)) {
-          model.set({params : $.parseJSON(params)});
-        }
-      });
+      this.bind('change:params', this.parseParams);
+      this.parseParams(this);
+    },
+    parseParams : function(model) {
+      var params = model.get('params');
+      if (_.isString(params)) {
+        model.set({
+          params : $.parseJSON(params)
+        });
+      }
     }
   });
 
