@@ -11,7 +11,25 @@
     },
     render : function() {
       var output = $$.render.discussion_document(this.model.toJSON());
-      this.addAllOperations();
+      this.executeAllOperations();
+      this.decissions = $(".decissions", output);
+      this.decissions.after(new $$.SlotPresenter({
+        repository_id : this.model.get('id'),
+        operations : this.operations,
+        model : 'Decission'
+      }).el);
+      this.reactions = $(".reactions", output);
+      this.reactions.after(new $$.SlotPresenter({
+        repository_id : this.model.get('id'),
+        operations : this.operations,
+        model : 'Reaction'
+      }).el);
+      this.opinions = $(".opinions", output);
+      this.opinions.after(new $$.SlotPresenter({
+        repository_id : this.model.get('id'),
+        operations : this.operations,
+        model : 'Opinion'
+      }).el);
       $(this.el).empty().append(output);
 
       this.delegateEvents();
@@ -19,23 +37,14 @@
     }
   });
 
-  $$.DiscussionPresenter = Backbone.View.extend({
-    events : {
-      'click' : 'clicked'
+  $$.DiscussionPresenter = $$.BrowserItemPresenter.extend({
+    open : function() {
+      $$.router.go_project('discussions', this.model.get('id'));
+      return false;
     },
-    initialize: function() {
-      _.bindAll(this, 'render');
-      this.model.bind('change', this.render);
-      this.model.view = this;
-      this.render();
-      this.delegateEvents();
-    },
-    render: function() {
-      this.el = $$.render.discussion(this.model.toJSON());
-      return true;
-    },
-    clicked : function() {
-      $$.router.go('projects', this.model.get('project_id'), 'discussions', this.model.get('id'));
+    edit : function() {
+      $$.router.go_project('discussions', this.model.get('id'), 'edit');
+      return false;
     }
   });
 

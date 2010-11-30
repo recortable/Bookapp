@@ -24,7 +24,17 @@
           <%= link_to 'Usuarios', users_url %> |
           <%= link_to 'Sistema', '/rails/info/properties' %>
         </div>
+        <div class="links">
+          <% if @project %>
+            Investigación: <%= link_to @project.title, @project %><br/>
+            <% repo = @article %>
+            <% if repo %>
+              Repositorio: <%= repo.title %> <%= link_to 'Operaciones', [@project, repo, :operations] %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
+
       <%= yield %>
     </div>
   </body>

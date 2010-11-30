@@ -6,11 +6,14 @@ javascripts:
     - public/javascripts/libs/underscore-min.js
     - public/javascripts/libs/backbone-min.js
     - public/javascripts/libs/handlebars.js
+    - public/javascripts/libs/showdown-min.js
+    - public/javascripts/libs/html-sanitizer.js
     - public/client/boot.js
     - public/client/production.js
     - public/client/app/*.js
     - public/client/helpers/*.js
     - public/client/models/*.js
+    - public/client/presenters/shared/*.js
     - public/client/presenters/*.js
     - public/client/controllers/*.js
     - public/client/load.js
@@ -19,12 +22,15 @@ javascripts:
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
     - public/javascripts/libs/handlebars.js
+    - public/javascripts/libs/showdown.js
+    - public/javascripts/libs/html-sanitizer.js
     - public/clinet/asset.js
     - public/client/boot.js
     - public/client/development.js
     - public/client/app/*.js
     - public/client/helpers/*.js
     - public/client/models/*.js
+    - public/client/presenters/shared/*.js
     - public/client/presenters/*.js
     - public/client/controllers/*.js
     - public/client/load.js

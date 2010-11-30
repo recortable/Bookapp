@@ -1,5 +1,5 @@
 <script id="document" type="text/html">
-  <div id="page" class="document">
+  <div class="page document">
     <div id="document_{{id}}" class="head">
       <h1>{{title}}</h1>
       <div class="description">{{description}}</div>
@@ -29,10 +29,17 @@
 <script id="slot" type="text/html">
   <div class="slot">
     <div class="editor" style="display: none;">
-      <h2>Añadir un párrafo</h2>
+      <h2>{{ title }}</h2>
       <form action="#">
         <div class="inputs">
           <textarea class="body" cols="30" rows="6"></textarea>
+        </div>
+        <div class="input select optional">
+          <label class="select optional" for="filter">Tipo de contenido</label>
+          <select class="select optional filter" name="project[stage]">
+            <option value="markdown">Texto mejorado</option>
+            <option value="html">HTML</option>
+          </select>
         </div>
         <div class="actions">
           <input type="submit" value="Guardar" />
@@ -44,12 +51,11 @@
 </script>
 
 <script id="paragraph" type="text/html">
-  <div id="paragraph-presenter-{{id}}" class="paragraph">
     <div class="display">
       <div class="actions">
         <a class="action-edit iconic iconic-plus_alt_16x16">Editar</a>
       </div>
-      <div id="paragraph-{{id}}" class="body">{{{body}}}</div>
+      <div id="paragraph-{{id}}" class="body">{{{filtered_body}}}</div>
     </div>
     <div class="paragraph-editor editor" style="display: none;">
       <h2>Editar párrafo</h2>
@@ -63,7 +69,6 @@
         </div>
       </form>
     </div>
-  </div>
 </script>
 
 <script id="comment" type="text/html">

@@ -10,12 +10,18 @@
       this.model.bind('change', this.render);
       this.operations = options.operations;
       assert(this.operations, "Operations can't be null in ParagraphPresenter");
-      this.el = $$.render.paragraph(this.model.toJSON());
+      this.el = $$.Render.div('paragraph');
       this.delegateEvents();
-      console.log("PARAGRPAH", this.model);
+      this.render();
     },
     render : function() {
-      this.$(".body").html(this.model.get('body'));
+      this.el.attr('id', 'paragraph-' + this.model.get('id'));
+      var filter = this.model.get('params').filter;
+      filter || (filter = 'none')
+      var data = _.extend({
+        filtered_body : $$.filter[filter](this.model.get('body'))
+      }, this.model.toJSON());
+      this.el.html($$.render.paragraph(data));
       return true;
     },
     openEditor : function() {
@@ -37,7 +43,7 @@
         action : 'update',
         body : body,
         params : {
-          model_id : operation.get('id')
+          model_id : "" + operation.get('id')
         }
       }));
       this.closeEditor();

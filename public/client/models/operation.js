@@ -1,6 +1,14 @@
 (function() {
   $$.Operation = Backbone.Model.extend({
-    http_params: 'operation'
+    http_params: 'operation',
+    initialize : function() {
+      this.bind('change:params', function(model) {
+        var params = model.get('params');
+        if (_.isString(params)) {
+          model.set({params : $.parseJSON(params)});
+        }
+      });
+    }
   });
 
   $$.Operations = Backbone.Collection.extend({

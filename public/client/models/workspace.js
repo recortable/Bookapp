@@ -1,6 +1,6 @@
 (function() {
   $$.Workspace = Backbone.Model.extend({
-    url: '/.json',
+    url: '/workspace.json',
     defaults : {
       project_id : null
     },

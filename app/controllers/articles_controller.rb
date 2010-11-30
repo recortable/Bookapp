@@ -3,6 +3,11 @@ class ArticlesController < InheritedResources::Base
   respond_to :html, :xml, :json
   belongs_to :project
 
+  def show
+    show! do |format|
+      format.json { render :json => @article.to_json(:include => :operations)}
+    end
+  end
 
   def update
     update! { project_articles_path(@project)}

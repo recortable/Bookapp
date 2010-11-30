@@ -34,7 +34,7 @@
           var url = "/projects/" + project_id + "/discussions/" + discussion_id + ".json";
           $$.Cache.refresh(url, $$.discussions, discussion_id, function (discussion) {
             var token = url + "-DiscussionPresenter";
-            $$.Cache.presenter(token, $$.DiscussionPresenter, discussion, function (presenter) {
+            $$.Cache.presenter(token, $$.DiscussionDocumentPresenter, discussion, function (presenter) {
               $$.layout.show(presenter);
             });
           });

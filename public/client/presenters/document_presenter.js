@@ -5,15 +5,21 @@
         var slot = new $$.SlotPresenter({
           repository_id : operation.get('repository_id'),
           operations : presenter.operations,
-          before_id : operation.get('id')
+          model : 'Paragraph',
+          params : {
+            before_id : "" + operation.get('id')
+          }
         });
         var para = new $$.ParagraphPresenter({
           model : operation,
           operations : presenter.operations
         });
         var params = operation.get('params');
-        if (params && params.before) {
-          var target = $("#paragraph-presenter-" + params.before, presenter.paragraphs);
+        
+          console.log("OPERATOR PARAMS!", params);
+        if (params && params.before_id) {
+          console.log("OPERATOR PARAMS!", params.before_id);
+          var target = $("#paragraph-presenter-" + params.before_id, presenter.paragraphs);
           target.before(para.el).before(slot.el);
         } else {
           presenter.paragraphs.append(slot.el).append(para.el);
@@ -57,7 +63,8 @@
         this.executeAllOperations();
         this.paragraphs.after(new $$.SlotPresenter({
           repository_id : this.model.get('id'),
-          operations : this.operations
+          operations : this.operations,
+          model : 'Paragraph'
         }).el);
         $(this.el).empty().append(output);
         this.delegateEvents();
@@ -75,8 +82,4 @@
       return false;
     }
   });
-
-
-
-
 })(jQuery);

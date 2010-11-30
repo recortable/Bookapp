@@ -1,5 +1,6 @@
 Bookapp::Application.routes.draw do
   devise_for :users,   :controllers => { :sessions => "sessions", :registrations => "registrations" }
+  resource :workspace
   resources :users
   resources :projects do
     resources :operations
@@ -17,7 +18,7 @@ Bookapp::Application.routes.draw do
   resources :messages
 
 
-  root :to => 'workspaces#show'
+  root :to => 'client#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
