@@ -1,7 +1,6 @@
 <%= title("Operaciones de #{@repository.title}") %>
 
 <div class="actions">
-  <%= link_to 'Volver', [@project, @repository] %>
   <%= link_to 'Añadir operación', new_operation_path(@project, @repository) %>
 </div>
 

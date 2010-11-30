@@ -19,14 +19,18 @@
       var filter = this.model.get('params').filter;
       filter || (filter = 'none')
       var data = _.extend({
-        filtered_body : $$.filter[filter](this.model.get('body'))
+        filtered_body : $$.filter[filter](this.model.get('body')),
+        metadata : {
+          user : 'dani',
+          created_at : this.model.get('created_at')
+        }
       }, this.model.toJSON());
-      this.el.html($$.render.paragraph(data));
+      this.el.html($$.render.paragraph(data, $$.helpers));
       return true;
     },
     openEditor : function() {
       this.$(".display").hide();
-      this.$(".editor-body").text(this.model.get('body'));
+      this.$(".body").text(this.model.get('body'));
       this.$(".editor").show();
     },
     closeEditor : function() {
@@ -34,8 +38,8 @@
       this.$(".display").show();
     },
     saveEditor : function() {
-      var body = this.$(".editor-body").val();
-      this.$(".body").html(body);
+      var body = this.$("form .body").val();
+      this.$("form .body").html(body);
       var operation = this.model;
       this.operations.create(new $$.Operation({
         repository_id : operation.get('repository_id'),
@@ -43,7 +47,8 @@
         action : 'update',
         body : body,
         params : {
-          model_id : "" + operation.get('id')
+          model_id : "" + operation.get('id'),
+          filter : this.$("form .filter").val()
         }
       }));
       this.closeEditor();

@@ -33,9 +33,9 @@
       $("#content").html(this.el);
     },
     executeOperation : function(operation) {
-      console.log("EXECUTE: ", operation);
       var model = operation.get('model');
       var action = operation.get('action');
+      console.log("EXECUTE: ", action, model, operation);
       var operator = this.operator[model];
       var operation_function = operator ? operator[action] : null;
       operation_function && operation_function(operation, this);

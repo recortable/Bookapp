@@ -4,6 +4,7 @@
   var date_regex = /(\d{4})-(\d{2})-(\d{2})\w(\d{2}):(\d{2})/
   $$.DateTime = {
     parse : function(repr) {
+      console.log("DATE", repr);
       var date = Date.parse(repr);
       if (date > 0) {
         return new Date(date);
@@ -12,6 +13,7 @@
         return repr;
       }
       var ext = repr.match(date_regex);
+      console.log("DATE EXP", ext);
       return ext ? new Date(ext[1], ext[2] - 1, ext[3], ext[4], ext[5]) : null;
     },
     toString : function(stringDate) {

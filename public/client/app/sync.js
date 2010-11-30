@@ -49,6 +49,7 @@
       dataType:     'json',
       processData:  false,
       success: function(response) {
+        console.log("SYNC RESPONSE", request_url, response);
         success(response);
         $$.loading(false, request_url);
       },

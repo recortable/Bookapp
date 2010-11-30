@@ -2,11 +2,11 @@
 @import "variables";
 
 .page {
-  width: 96%; margin-left: 2%; margin-bottom: 1em; font-family: 'Nobile', serif; .shadow;
-  border: 1px solid @grisoscuro;
+  width: 96%; margin-left: 2%; margin-bottom: 1em; font-family: 'Nobile', serif; 
   background-color: white;
-  font-size: @font-small;
   padding-bottom: 1em;
+  font-size: @font-small;
+  border: 1px solid @grisoscuro;
 }
 
 .page a {color: @azul;}
@@ -56,7 +56,8 @@ div.page div.slot.open {width: 90%; height: auto; padding: 1em; background-color
 .page .slot .actions a {color: black; cursor: pointer;}
 .page .slot .actions a:hover {color: white; text-decoration: none;}
 .paragraph .actions {float: right;}
-
+.metadata {display: none; margin-left: 1em; float: left; font-size: 80%; color: @azul; opacity: 0.5;}
+div.paragraph:hover .metadata {display: block;}
 .page .body p, .page .body ol, .page .body h2 {width: 80%; margin: 10px 10%; overflow: hidden;}
 .page .body h2 {font-size: 130%;}
 .page .body img {display: block; margin: 10px auto;  }

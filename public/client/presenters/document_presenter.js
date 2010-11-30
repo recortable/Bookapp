@@ -14,18 +14,17 @@
           model : operation,
           operations : presenter.operations
         });
+        console.log("CREATE PARA", operation, presenter);
         var params = operation.get('params');
-        
-          console.log("OPERATOR PARAMS!", params);
         if (params && params.before_id) {
-          console.log("OPERATOR PARAMS!", params.before_id);
-          var target = $("#paragraph-presenter-" + params.before_id, presenter.paragraphs);
+          var target = $("#paragraph-" + params.before_id, presenter.paragraphs);
           target.before(para.el).before(slot.el);
         } else {
           presenter.paragraphs.append(slot.el).append(para.el);
         }
       },
       update : function(operation, presenter) {
+        console.log("UPDATE PARA", operation);
         var old_operation = presenter.operations.get(operation.get('params').model_id);
         assert(old_operation, "Update paragraph should have an older operation");
         old_operation.set({

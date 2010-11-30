@@ -32,7 +32,7 @@
           blocks || (blocks = {});
           if (spec.partials) blocks.partials = spec.partials;
           data = data || {};
-          console.log("RENDER", data, blocks);
+          //console.log("RENDER", data, blocks);
           var result = spec.cache[name](data, blocks);
           return raw ? result : $(result);
         };

@@ -7,7 +7,7 @@
       return text;
     },
     html : function(text) {
-      return html_sanitize(text)
+      return text;
     }
   }
 })();

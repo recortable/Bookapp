@@ -1,30 +1,48 @@
 (function($) {
   var Operator = {
-    Comment : {
-
-  }
+    Opinion : {
+      create : function(operation, presenter) {
+        var para = new $$.ParagraphPresenter({
+          model : operation,
+          operations : presenter.operations
+        });
+        presenter.opinions.append(para.el);
+      },
+      update : function(operation, presenter) {
+        var previous = presenter.operations.get(operation.get('params').model_id);
+        assert(previous, "Update paragraph should have an previous operation");
+        var params = _.extend({}, previous.get('params'));
+        _.extend(params, {filter : operation.get('params').filter});
+        console.log("UPDATE OPINION PARAMS", params);
+        previous.set({
+          body : operation.get('body'),
+          params : params
+        });
+      }
+    }
   }
 
   $$.DiscussionDocumentPresenter = $$.RepositoryPresenter.extend({
+    operator : Operator,
     initialize : function() {
       this.init();
     },
     render : function() {
       var output = $$.render.discussion_document(this.model.toJSON());
-      this.executeAllOperations();
       this.decissions = $(".decissions", output);
+      this.reactions = $(".reactions", output);
+      this.opinions = $(".opinions", output);
+      this.executeAllOperations();
       this.decissions.after(new $$.SlotPresenter({
         repository_id : this.model.get('id'),
         operations : this.operations,
         model : 'Decission'
       }).el);
-      this.reactions = $(".reactions", output);
       this.reactions.after(new $$.SlotPresenter({
         repository_id : this.model.get('id'),
         operations : this.operations,
         model : 'Reaction'
       }).el);
-      this.opinions = $(".opinions", output);
       this.opinions.after(new $$.SlotPresenter({
         repository_id : this.model.get('id'),
         operations : this.operations,

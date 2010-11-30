@@ -1,14 +1,10 @@
 (function($) {
 
-  var helpers = {
-    fecha : function(context, fn) {
-      return $$.DateTime.toString(fn(this));
-    }
-  }
+
 
   $$.MessagePresenter = Backbone.View.extend({
     initialize : function() {
-      this.el = $$.render.message(this.model.toJSON(), helpers);
+      this.el = $$.render.message(this.model.toJSON(), $$.helpers);
     }
   });
 

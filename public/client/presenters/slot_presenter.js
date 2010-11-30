@@ -39,6 +39,7 @@
       }
     },
     saveEditor : function() {
+      try {
       var body = this.$(".body").val();
       var params = {
         filter : this.$(".select.filter").val()
@@ -53,6 +54,9 @@
       });
       this.operations.create(operation);
       this.closeEditor();
+      } catch(e) {
+        console.log(e);
+      }
       return false;
     }
   });

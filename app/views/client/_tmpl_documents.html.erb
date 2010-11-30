@@ -26,49 +26,50 @@
   </div>
 </script>
 
+<script id="paragraph_editor" type="text/html" class="partial">
+  <form action="#">
+    <div class="inputs">
+      <textarea class="body" cols="30" rows="6"></textarea>
+    </div>
+    <div class="input select optional">
+      <label class="select optional" for="filter">Tipo de contenido</label>
+      <select class="select optional filter" name="filter">
+        <option value="markdown">Texto mejorado</option>
+        <option value="html">HTML</option>
+      </select>
+    </div>
+    <div class="actions">
+      <input type="submit" value="Guardar" />
+      <a class="cancel">Cancelar</a>
+    </div>
+  </form>
+</script>
+
 <script id="slot" type="text/html">
   <div class="slot">
     <div class="editor" style="display: none;">
       <h2>{{ title }}</h2>
-      <form action="#">
-        <div class="inputs">
-          <textarea class="body" cols="30" rows="6"></textarea>
-        </div>
-        <div class="input select optional">
-          <label class="select optional" for="filter">Tipo de contenido</label>
-          <select class="select optional filter" name="project[stage]">
-            <option value="markdown">Texto mejorado</option>
-            <option value="html">HTML</option>
-          </select>
-        </div>
-        <div class="actions">
-          <input type="submit" value="Guardar" />
-          <a class="cancel">Cancelar</a>
-        </div>
-      </form>
+    {{>paragraph_editor}}
     </div>
   </div>
 </script>
 
 <script id="paragraph" type="text/html">
-    <div class="display">
-      <div class="actions">
-        <a class="action-edit iconic iconic-plus_alt_16x16">Editar</a>
-      </div>
-      <div id="paragraph-{{id}}" class="body">{{{filtered_body}}}</div>
+  <div class="display">
+    <div class="actions">
+      <a class="action-edit iconic iconic-plus_alt_16x16">Editar</a>
     </div>
-    <div class="paragraph-editor editor" style="display: none;">
-      <h2>Editar párrafo</h2>
-      <form>
-        <div class="inputs">
-          <textarea class="editor-body" cols="30" rows="6"></textarea>
-        </div>
-        <div class="actions">
-          <input type="submit" value="Guardar" />
-          <a class="cancel">Cancelar</a>
-        </div>
-      </form>
+    {{#metadata}}
+    <div class="metadata">
+      <div class="user">{{user}}</div>
+      <div class="date">{{#fecha}}{{created_at}}{{/fecha}}</div>
     </div>
+    {{/metadata}}
+    <div class="body">{{{filtered_body}}}</div>
+  </div>
+  <div class="paragraph-editor editor" style="display: none;">
+    {{>paragraph_editor}}
+  </div>
 </script>
 
 <script id="comment" type="text/html">

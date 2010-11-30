@@ -11,7 +11,7 @@ class ProjectsController < InheritedResources::Base
   def show
     @project = Project.find params[:id]
     #authorize!(params[:action], @project)
-    show! do |format|
+    respond_to do |format|
       format.html
       format.json { render :json => @project.to_json(:include => :operations)}
     end

@@ -7,6 +7,7 @@ javascripts:
     - public/javascripts/libs/backbone-min.js
     - public/javascripts/libs/handlebars.js
     - public/javascripts/libs/showdown-min.js
+    - public/javascripts/libs/html4-defs.js
     - public/javascripts/libs/html-sanitizer.js
     - public/client/boot.js
     - public/client/production.js
@@ -23,6 +24,7 @@ javascripts:
     - public/javascripts/libs/backbone.js
     - public/javascripts/libs/handlebars.js
     - public/javascripts/libs/showdown.js
+    - public/javascripts/libs/html4-defs.js
     - public/javascripts/libs/html-sanitizer.js
     - public/clinet/asset.js
     - public/client/boot.js
